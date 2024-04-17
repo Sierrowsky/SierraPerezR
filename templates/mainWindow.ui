@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1221</width>
-    <height>787</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1024</width>
+    <height>768</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -34,11 +40,11 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="1" column="0" colspan="2">
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="tabCli">
           <property name="minimumSize">
            <size>
-            <width>0</width>
-            <height>0</height>
+            <width>800</width>
+            <height>390</height>
            </size>
           </property>
           <property name="styleSheet">
@@ -80,7 +86,7 @@ background-color:rgb(100,100,100);
           </column>
          </widget>
         </item>
-        <item row="0" column="0">
+        <item row="0" column="0" colspan="2">
          <widget class="QFrame" name="frame">
           <property name="minimumSize">
            <size>
@@ -137,16 +143,16 @@ background-color:rgb(100,100,100);
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btnBaja">
+              <widget class="QPushButton" name="btnModificar">
                <property name="text">
-                <string>Baja</string>
+                <string>Modificar</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="btnModificar">
+              <widget class="QPushButton" name="btnBaja">
                <property name="text">
-                <string>Modificar</string>
+                <string>Baja</string>
                </property>
               </widget>
              </item>
@@ -337,6 +343,9 @@ background-color:rgb(100,100,100);
                  <property name="text">
                   <string>Particular</string>
                  </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
                  <attribute name="buttonGroup">
                   <string notr="true">categoria</string>
                  </attribute>
@@ -411,19 +420,6 @@ background-color:rgb(100,100,100);
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_5">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
                 <spacer name="verticalSpacer_3">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
@@ -470,36 +466,6 @@ background-color:rgb(100,100,100);
                   </size>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_7">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_3">
-               <item>
-                <spacer name="horizontalSpacer_6">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <widget class="QLabel" name="lblFecha">
@@ -559,6 +525,23 @@ background-color:rgb(100,100,100);
                  </property>
                 </widget>
                </item>
+               <item>
+                <spacer name="horizontalSpacer_6">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_3">
                <item>
                 <spacer name="horizontalSpacer_15">
                  <property name="orientation">
@@ -621,36 +604,6 @@ background-color:rgb(100,100,100);
                 </widget>
                </item>
                <item>
-                <spacer name="horizontalSpacer_11">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-              </layout>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_5">
-               <item>
-                <spacer name="horizontalSpacer_9">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
                 <widget class="QLabel" name="lblTelefono">
                  <property name="minimumSize">
                   <size>
@@ -684,32 +637,6 @@ background-color:rgb(100,100,100);
                   </size>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_10">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item>
-                <spacer name="verticalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <widget class="QLabel" name="lblEmail">
@@ -747,6 +674,49 @@ background-color:rgb(100,100,100);
                 </widget>
                </item>
                <item>
+                <spacer name="horizontalSpacer_5">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <spacer name="horizontalSpacer_9">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <spacer name="verticalSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <spacer name="horizontalSpacer_13">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
@@ -782,7 +752,7 @@ background-color:rgb(100,100,100);
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1221</width>
+     <width>1024</width>
      <height>21</height>
     </rect>
    </property>
@@ -795,6 +765,12 @@ background-color:rgb(100,100,100);
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>768</height>
+    </size>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -808,11 +784,19 @@ background-color:rgb(100,100,100);
    <addaction name="actionLimpiar_Panel"/>
   </widget>
   <action name="actionSalir">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/4213459-common-door-exit-logout-out-signout_115411.ico</normaloff>../images/4213459-common-door-exit-logout-out-signout_115411.ico</iconset>
+   </property>
    <property name="text">
     <string>Salir</string>
    </property>
   </action>
   <action name="actionLimpiar_Panel">
+   <property name="icon">
+    <iconset>
+     <normaloff>../images/reset_undo_arrow_icon_149006.ico</normaloff>../images/reset_undo_arrow_icon_149006.ico</iconset>
+   </property>
    <property name="text">
     <string>Limpiar Panel</string>
    </property>
