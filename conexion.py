@@ -5,7 +5,7 @@ import var
 
 class conexion:
     def conexion(self=None):
-        var.bbdd='bbdd.sqlite'
+        var.bbdd='bbddR.db'
         db=QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(var.bbdd)
         if not db.open():
@@ -14,32 +14,35 @@ class conexion:
         else:
             print('base datos encontrada')
             return True
-    def guardarCliente(cliente):
+    @staticmethod
+    def guardarCliente(newCliente):
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
-                'INSERT INTO Cliente(nombre, apellido, direccion, fecha_nacimiento, telefono, email, categoria) '
+                'INSERT INTO cliente(nombre, apellido, direccion, fecha_nacimiento, telefono, email, categoria) '
                 'VALUES(:nombre, :apellido, :direccion, :fecha_nacimiento, :telefono, :email, :categoria)')
-            query.bindValue(':nombre', str(cliente[0]))
-            query.bindValue(':apellido', str(cliente[1]))
-            query.bindValue(':direccion', str(cliente[2]))
-            query.bindValue(':fecha_nacimiento', str(cliente[3]))
-            query.bindValue(':telefono', str(cliente[4]))
-            query.bindValue(':email', str(cliente[5]))
-            query.bindValue(':categoria', str(cliente[6]))
-
+            query.bindValue(':nombre', str(newCliente[0]))
+            query.bindValue(':apellido', str(newCliente[1]))
+            query.bindValue(':direccion', str(newCliente[2]))
+            query.bindValue(':fecha_nacimiento', str(newCliente[3]))
+            query.bindValue(':telefono', str(newCliente[4]))
+            query.bindValue(':email', str(newCliente[5]))
+            query.bindValue(':categoria', str(newCliente[6]))
             if query.exec():
-                mbox = QtWidgets.QMessageBox()
-                mbox.setWindowTitle('Aviso')
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                mbox.setText("Cliente dado de alta")
-                mbox.exec()
+                return True
             else:
                 print(query.lastError().text())
-                mbox = QtWidgets.QMessageBox()
-                mbox.setWindowTitle('Aviso')
-                mbox.setIcon(QtWidgets.QMessageBox.Icon.Warning)
-                mbox.setText("Error al guardar el cliente")
-                mbox.exec()
+                return False
         except Exception as error:
-            print(error, "guardarCliente")
+            print(error, " en guardarCliente")
+    def mostrarCliente(self=None):
+        try:
+            registros=[]
+            query=QtSql.QSqlQuery()
+            query.prepare('select categoria, nombre, direccion, telefono, email from cliente')
+            if query.exec():
+                while query.next():
+                    row=[query.value(i) for i in range(query.record().count())]
+                    registros.append(row)
+            if registros:
+

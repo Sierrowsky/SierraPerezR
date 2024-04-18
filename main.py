@@ -29,6 +29,9 @@ class Main(QtWidgets.QMainWindow):
         Eventos Radio Button
         """
         var.ui.rbtEmpresario.toggled.connect(main.Main.toggleApellidos)
+        """
+        Eventos tabla
+        """
 
     def toggleApellidos(checked):
         # Deshabilita el campo de entrada de apellidos si el radio button está marcado

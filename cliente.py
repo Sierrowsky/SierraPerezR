@@ -1,3 +1,4 @@
+from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.uic.properties import QtWidgets, QtCore
 
 import var
@@ -22,21 +23,31 @@ class cliente:
     def altaCliente(self):
         try:
             cliente = [
-                var.ui.leNombre.text(),
-                var.ui.leApellidos.text(),
-                var.ui.leDireccion.text(),
-                var.ui.leFecha.text(),
-                var.ui.leTelefono.text(),
-                var.ui.leEmail.text()
+                var.ui.leNombre,
+                var.ui.leApellidos,
+                var.ui.leDireccion,
+                var.ui.leFecha,
+                var.ui.leTelefono,
+                var.ui.leEmail
             ]
+            newCliente = []
+            for i in cliente:
+                newCliente.append(i.text().title())
             if var.ui.rbtEmpresario.isChecked():
                 categoria = "Empresario"
             elif var.ui.rbtParticular.isChecked():
                 categoria = "Particular"
 
-            cliente.append(categoria)
-            print(cliente)
-            conexion.conexion.guardarCliente(cliente)
+            newCliente.append(categoria)
+            print(newCliente)
+            conexion.conexion.guardarCliente(newCliente)
         except Exception as error:
             print(error, " alta cliente")
+    def cargarTablaClientes(registros):
+        try:
+            index = 0
+            for registro in registros:
+                var.ui.tabCli.setRowCount(index+1)
+                var.ui.tabCli.setItem(index,0,QTableWidgetItem(str(registro[0])))
+
 
