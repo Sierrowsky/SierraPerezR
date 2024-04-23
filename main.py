@@ -14,6 +14,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.calendar = Calendar()
         conexion.conexion.conexion()
+        conexion.conexion.mostrarCliente()
 
         """
         Eventos Botones
@@ -32,6 +33,8 @@ class Main(QtWidgets.QMainWindow):
         """
         Eventos tabla
         """
+        eventos.Eventos.resiceTabCli()
+        var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
 
     def toggleApellidos(checked):
         # Deshabilita el campo de entrada de apellidos si el radio button está marcado

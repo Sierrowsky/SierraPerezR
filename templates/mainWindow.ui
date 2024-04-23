@@ -17,11 +17,11 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Games Teis</string>
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../images/brand_cthulhu_icon_158944.ico</normaloff>../images/brand_cthulhu_icon_158944.ico</iconset>
+    <normaloff>C:/Users/a21pablosp/.designer/images/brand_cthulhu_icon_158944.ico</normaloff>C:/Users/a21pablosp/.designer/images/brand_cthulhu_icon_158944.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -29,7 +29,6 @@
      <widget class="QTabWidget" name="tabWidget">
       <property name="font">
        <font>
-        <weight>75</weight>
         <bold>true</bold>
         <underline>false</underline>
        </font>
@@ -56,9 +55,20 @@ font: 11pt &quot;Arial&quot;;
 background-color:rgb(100,100,100);
 }</string>
           </property>
+          <property name="selectionMode">
+           <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+          </property>
           <property name="showGrid">
            <bool>true</bool>
           </property>
+          <column>
+           <property name="text">
+            <string>Codigo</string>
+           </property>
+          </column>
           <column>
            <property name="text">
             <string>Categoria</string>
@@ -101,10 +111,10 @@ background-color:rgb(100,100,100);
            </size>
           </property>
           <property name="frameShape">
-           <enum>QFrame::Box</enum>
+           <enum>QFrame::Shape::Box</enum>
           </property>
           <property name="frameShadow">
-           <enum>QFrame::Plain</enum>
+           <enum>QFrame::Shadow::Plain</enum>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
            <item row="1" column="0">
@@ -112,7 +122,7 @@ background-color:rgb(100,100,100);
              <item>
               <spacer name="horizontalSpacer_12">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -125,7 +135,7 @@ background-color:rgb(100,100,100);
              <item>
               <spacer name="horizontalSpacer_17">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -159,10 +169,10 @@ background-color:rgb(100,100,100);
              <item>
               <spacer name="verticalSpacer_5">
                <property name="orientation">
-                <enum>Qt::Vertical</enum>
+                <enum>Qt::Orientation::Vertical</enum>
                </property>
                <property name="sizeType">
-                <enum>QSizePolicy::Fixed</enum>
+                <enum>QSizePolicy::Policy::Fixed</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -175,7 +185,7 @@ background-color:rgb(100,100,100);
              <item>
               <spacer name="horizontalSpacer_14">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -195,7 +205,7 @@ background-color:rgb(100,100,100);
              <item>
               <spacer name="horizontalSpacer_16">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -214,7 +224,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -262,7 +272,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_2">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -275,7 +285,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="verticalSpacer_4">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -322,7 +332,7 @@ background-color:rgb(100,100,100);
                   <string>Empresario</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">categoria</string>
+                  <string notr="true">buttonGroup</string>
                  </attribute>
                 </widget>
                </item>
@@ -347,14 +357,14 @@ background-color:rgb(100,100,100);
                   <bool>true</bool>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">categoria</string>
+                  <string notr="true">buttonGroup</string>
                  </attribute>
                 </widget>
                </item>
                <item>
                 <spacer name="horizontalSpacer_4">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -371,7 +381,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_3">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -422,7 +432,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="verticalSpacer_3">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -515,7 +525,7 @@ background-color:rgb(100,100,100);
                  </property>
                  <property name="icon">
                   <iconset>
-                   <normaloff>../images/calendar_87631.ico</normaloff>../images/calendar_87631.ico</iconset>
+                   <normaloff>C:/Users/a21pablosp/.designer/images/calendar_87631.ico</normaloff>C:/Users/a21pablosp/.designer/images/calendar_87631.ico</iconset>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -528,7 +538,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_6">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -545,7 +555,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_15">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -558,7 +568,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="verticalSpacer_2">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -676,7 +686,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_5">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -693,7 +703,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_9">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -706,7 +716,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="verticalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Orientation::Vertical</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -719,7 +729,7 @@ background-color:rgb(100,100,100);
                <item>
                 <spacer name="horizontalSpacer_13">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -753,7 +763,7 @@ background-color:rgb(100,100,100);
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuSalir">
@@ -761,7 +771,14 @@ background-color:rgb(100,100,100);
      <string>Archivo</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuInformes">
+    <property name="title">
+     <string>Informes</string>
+    </property>
+    <addaction name="actionListado_Clientes"/>
+   </widget>
    <addaction name="menuSalir"/>
+   <addaction name="menuInformes"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <widget class="QToolBar" name="toolBar">
@@ -786,7 +803,7 @@ background-color:rgb(100,100,100);
   <action name="actionSalir">
    <property name="icon">
     <iconset>
-     <normaloff>../images/4213459-common-door-exit-logout-out-signout_115411.ico</normaloff>../images/4213459-common-door-exit-logout-out-signout_115411.ico</iconset>
+     <normaloff>C:/Users/a21pablosp/.designer/images/4213459-common-door-exit-logout-out-signout_115411.ico</normaloff>C:/Users/a21pablosp/.designer/images/4213459-common-door-exit-logout-out-signout_115411.ico</iconset>
    </property>
    <property name="text">
     <string>Salir</string>
@@ -795,16 +812,21 @@ background-color:rgb(100,100,100);
   <action name="actionLimpiar_Panel">
    <property name="icon">
     <iconset>
-     <normaloff>../images/reset_undo_arrow_icon_149006.ico</normaloff>../images/reset_undo_arrow_icon_149006.ico</iconset>
+     <normaloff>C:/Users/a21pablosp/.designer/images/reset_undo_arrow_icon_149006.ico</normaloff>C:/Users/a21pablosp/.designer/images/reset_undo_arrow_icon_149006.ico</iconset>
    </property>
    <property name="text">
     <string>Limpiar Panel</string>
+   </property>
+  </action>
+  <action name="actionListado_Clientes">
+   <property name="text">
+    <string>Listado Clientes</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="categoria"/>
+  <buttongroup name="buttonGroup"/>
  </buttongroups>
 </ui>

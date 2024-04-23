@@ -39,10 +39,28 @@ class conexion:
         try:
             registros=[]
             query=QtSql.QSqlQuery()
-            query.prepare('select categoria, nombre, direccion, telefono, email from cliente')
+            query.prepare('select id_cliente, categoria, nombre, direccion, telefono, email from cliente')
             if query.exec():
                 while query.next():
                     row=[query.value(i) for i in range(query.record().count())]
                     registros.append(row)
-            if registros:
 
+            else:
+                print(query.lastError())
+            cliente.cliente.cargarTablaClientes(registros)
+        except Exception as error:
+            print("Fallos en mostrar cliente ", error)
+    @staticmethod
+    def onecli(id):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT * FROM cliente WHERE id_cliente = :id')
+            query.bindValue(':id',int(id))
+            if query.exec():
+                while query.next():
+                    for i in range(8):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as err:
+            print ("Error fichero cliente", err)
