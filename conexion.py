@@ -1,3 +1,5 @@
+import datetime
+
 from PyQt6 import QtWidgets, QtSql
 
 import cliente
@@ -35,16 +37,20 @@ class conexion:
                 return False
         except Exception as error:
             print(error, " en guardarCliente")
-    def mostrarCliente(self=None):
+    @staticmethod
+    def mostrarCliente():
         try:
+            if var.ui.cbHistorico.isChecked():
+                consulta= 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente'
+            else :
+                consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
             registros=[]
             query=QtSql.QSqlQuery()
-            query.prepare('select id_cliente, categoria, nombre, direccion, telefono, email from cliente')
+            query.prepare(consulta)
             if query.exec():
                 while query.next():
                     row=[query.value(i) for i in range(query.record().count())]
                     registros.append(row)
-
             else:
                 print(query.lastError())
             cliente.cliente.cargarTablaClientes(registros)
@@ -64,3 +70,22 @@ class conexion:
             return registro
         except Exception as err:
             print ("Error fichero cliente", err)
+    def bajaCliente(codigo):
+        try:
+            fecha = datetime.date.today()
+            print(fecha)
+            fecha = fecha.strftime('%d/%m/%Y')
+            query=QtSql.QSqlQuery()
+            query.prepare("UPDATE cliente set fecha_baja = :fechabaja where id_cliente = :codigo")
+            query.bindValue(':fechabaja', str(fecha))
+            query.bindValue(':codigo', str(codigo))
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("Cliente dado de baja")
+                mbox.exec()
+            else:
+                print(query.lastError().text())
+        except Exception as error:
+            print("Error bajaCliente,", error)

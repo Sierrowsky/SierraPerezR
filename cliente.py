@@ -1,6 +1,9 @@
+import datetime
+
 from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.uic.properties import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
+import time
 
 import var
 import conexion
@@ -71,7 +74,7 @@ class cliente:
                 registro = conexion.conexion.onecli(cliente_id)
                 if registro:
                     datos = [var.ui.leCodigo, var.ui.leNombre, var.ui.leApellidos,
-                             var.ui.leFecha, var.ui.leDireccion,
+                             var.ui.leDireccion, var.ui.leFecha,
                              var.ui.leTelefono, var.ui.leEmail]
                     categoria = registro[7]
                     if categoria == "Particular":
@@ -85,4 +88,15 @@ class cliente:
                 print("No row selected")
         except Exception as error:
             print("Error cargar Clientes: ", error)
+
+    def bajaCliente(self):
+        try:
+            codigo = var.ui.leCodigo.text()
+            conexion.conexion.bajaCliente(codigo)
+            conexion.conexion.mostrarCliente()
+        except Exception as error:
+            print("Error en baja cliente cliente ",error)
+
+
+
 

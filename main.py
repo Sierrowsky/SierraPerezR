@@ -21,7 +21,8 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAlta.clicked.connect(cliente.cliente.altaCliente)
-        """
+        var.ui.btnBaja.clicked.connect(cliente.cliente.bajaCliente)
+        """    
         Eventos Botones
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.salir)
@@ -30,6 +31,7 @@ class Main(QtWidgets.QMainWindow):
         Eventos Radio Button
         """
         var.ui.rbtEmpresario.toggled.connect(main.Main.toggleApellidos)
+
         """
         Eventos tabla
         """
