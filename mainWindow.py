@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
         MainWindow.resize(1024, 768)
         MainWindow.setMaximumSize(QtCore.QSize(1024, 768))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:/Users/a21pablosp/.designer/images/brand_cthulhu_icon_158944.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("C:/Users/a21pablosp/.designer/images/log.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(parent=MainWindow)
         self.centralwidget.setObjectName("centralwidget")

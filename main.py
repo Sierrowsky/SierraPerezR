@@ -1,6 +1,7 @@
 import cliente
 import conexion
 import eventos
+import informes
 import main
 import mainWindow
 import var, sys
@@ -37,6 +38,11 @@ class Main(QtWidgets.QMainWindow):
         """
         eventos.Eventos.resiceTabCli()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
+        var.ui.cbHistorico.toggle()
+        """
+        Eventos Tool Bar
+        """
+        var.ui.actionListado_Clientes.triggered.connect(informes.informes.reportCLientes)
 
     def toggleApellidos(checked):
         # Deshabilita el campo de entrada de apellidos si el radio button está marcado
