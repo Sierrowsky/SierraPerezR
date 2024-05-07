@@ -41,9 +41,9 @@ class conexion:
     def mostrarCliente():
         try:
             if var.ui.cbHistorico.isChecked():
-                consulta= 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente'
+                consulta= 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
             else :
-                consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
+                consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente'
             registros=[]
             query=QtSql.QSqlQuery()
             query.prepare(consulta)
@@ -89,3 +89,24 @@ class conexion:
                 print(query.lastError().text())
         except Exception as error:
             print("Error bajaCliente,", error)
+    def crearProducto(producto):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                'INSERT INTO cliente(nombre, precio, stock) '
+                'VALUES(:nombre, :precio, :stock)')
+            query.bindValue(':nombre', str(producto[0]))
+            query.bindValue(':precio', str(producto[1]))
+            query.bindValue(':stock', str(producto[2]))
+            if query.exec():
+                return True
+            else:
+                print(query.lastError().text())
+                return False
+        except Exception as error:
+            print("Error CrearProducto",error)
+    def mostrarProducto(self):
+        try:
+            registro=[]
+        except Exception as error:
+            print("Error mostrarProducto",error)

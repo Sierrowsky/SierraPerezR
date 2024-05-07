@@ -4,6 +4,7 @@ import eventos
 import informes
 import main
 import mainWindow
+import producto
 import var, sys
 from mainWindow import *
 from auxiliar import *
@@ -16,7 +17,6 @@ class Main(QtWidgets.QMainWindow):
         var.calendar = Calendar()
         conexion.conexion.conexion()
         conexion.conexion.mostrarCliente()
-
         """
         Eventos Botones
         """
@@ -28,6 +28,7 @@ class Main(QtWidgets.QMainWindow):
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.salir)
         var.ui.actionLimpiar_Panel.triggered.connect(cliente.cliente.limpiar)
+        var.ui.actionLimpiar_Panel.triggered.connect(producto.producto.limpiarProductos)
         """
         Eventos Radio Button
         """
@@ -36,9 +37,11 @@ class Main(QtWidgets.QMainWindow):
         """
         Eventos tabla
         """
+        eventos.Eventos.resiceTabProd()
         eventos.Eventos.resiceTabCli()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
-        var.ui.cbHistorico.toggle()
+        var.ui.cbHistorico.toggled.connect(conexion.conexion.mostrarCliente)
+
         """
         Eventos Tool Bar
         """

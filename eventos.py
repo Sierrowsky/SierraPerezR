@@ -22,3 +22,11 @@ class Eventos():
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
         except Exception as error:
             print("error con tabCli", error)
+    @staticmethod
+    def resiceTabProd():
+        try:
+            header = var.ui.tabProd.horizontalHeader()
+            for i in range(var.ui.tabProd.columnCount()):
+                    header.setSectionResizeMode(i,QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error:
+            print("error con tabProd",error)

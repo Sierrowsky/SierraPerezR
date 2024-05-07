@@ -1,5 +1,3 @@
-import datetime
-
 from PyQt6.QtWidgets import QTableWidgetItem
 from PyQt6.uic.properties import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
@@ -96,7 +94,3 @@ class cliente:
             conexion.conexion.mostrarCliente()
         except Exception as error:
             print("Error en baja cliente cliente ",error)
-
-
-
-
