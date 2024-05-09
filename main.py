@@ -17,12 +17,17 @@ class Main(QtWidgets.QMainWindow):
         var.calendar = Calendar()
         conexion.conexion.conexion()
         conexion.conexion.mostrarCliente()
+        conexion.conexion.mostrarProducto()
         """
         Eventos Botones
         """
         var.ui.btnCalendar.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnAlta.clicked.connect(cliente.cliente.altaCliente)
         var.ui.btnBaja.clicked.connect(cliente.cliente.bajaCliente)
+        var.ui.btnCrearProd.clicked.connect(producto.producto.crearProducto)
+        var.ui.btnModificar.clicked.connect(cliente.cliente.modifCliente)
+        var.ui.btnModifProd.clicked.connect(producto.producto.modifProducto)
+        var.ui.btnEliminarProd.clicked.connect(producto.producto.eliminarProducto)
         """    
         Eventos Botones
         """
@@ -40,6 +45,7 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resiceTabProd()
         eventos.Eventos.resiceTabCli()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
+        var.ui.tabProd.clicked.connect(producto.producto.cargarProducto)
         var.ui.cbHistorico.toggled.connect(conexion.conexion.mostrarCliente)
 
         """

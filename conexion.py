@@ -3,6 +3,7 @@ import datetime
 from PyQt6 import QtWidgets, QtSql
 
 import cliente
+import producto
 import var
 
 class conexion:
@@ -37,6 +38,21 @@ class conexion:
                 return False
         except Exception as error:
             print(error, " en guardarCliente")
+
+    @staticmethod
+    def clienteEstaDadoDeBaja(codigo):
+        try:
+            consulta = "SELECT COUNT(*) FROM cliente WHERE id_cliente = ? AND fecha_baja IS NOT NULL"
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.addBindValue(codigo)
+            if query.exec() and query.next():
+                return query.value(0) > 0  # If count > 0, client is marked as inactive
+            else:
+                return False  # Assuming no result means the client is not marked as inactive
+        except Exception as error:
+            print("Error en clienteEstaDadoDeBaja:", error)
+            return False
     @staticmethod
     def mostrarCliente():
         try:
@@ -89,15 +105,41 @@ class conexion:
                 print(query.lastError().text())
         except Exception as error:
             print("Error bajaCliente,", error)
-    def crearProducto(producto):
+
+    def modifCliente(modifCliente):
         try:
+            consulta = ('update cliente set nombre=:nombre, apellido=:apellido, direccion=:direccion, '
+                        'fecha_nacimiento=:fecha_nacimiento, telefono=:telefono, '
+                        'email=:email, categoria=:categoria where id_cliente=:id_cliente')
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.bindValue(':id_cliente', int(modifCliente[0]))
+            query.bindValue(':nombre', str(modifCliente[1]))
+            query.bindValue(':apellido', str(modifCliente[2]))
+            query.bindValue(':direccion', str(modifCliente[3]))
+            query.bindValue(':fecha_nacimiento', str(modifCliente[4]))
+            query.bindValue(':telefono', str(modifCliente[5]))
+            query.bindValue(':email', str(modifCliente[6]))
+            query.bindValue(':categoria', str(modifCliente[7]))
+            print(modifCliente)
+            if query.exec():
+                return True
+            else:
+                print(query.lastError().text())
+                return False
+        except Exception as error:
+            print(error, " en modifCliente")
+
+    def crearProducto(newproducto):
+        try:
+            print(newproducto)
             query = QtSql.QSqlQuery()
             query.prepare(
-                'INSERT INTO cliente(nombre, precio, stock) '
+                'INSERT INTO producto (nombre, precio, stock) '
                 'VALUES(:nombre, :precio, :stock)')
-            query.bindValue(':nombre', str(producto[0]))
-            query.bindValue(':precio', str(producto[1]))
-            query.bindValue(':stock', str(producto[2]))
+            query.bindValue(':nombre', str(newproducto[0]))
+            query.bindValue(':precio', str(newproducto[1]))
+            query.bindValue(':stock', str(newproducto[2]))
             if query.exec():
                 return True
             else:
@@ -105,8 +147,69 @@ class conexion:
                 return False
         except Exception as error:
             print("Error CrearProducto",error)
-    def mostrarProducto(self):
+    @staticmethod
+    def mostrarProducto():
         try:
-            registro=[]
+            consulta = 'SELECT id_producto,nombre,precio,stock FROM producto '
+            query=QtSql.QSqlQuery()
+            query.prepare(consulta)
+            registros=[]
+            if query.exec():
+                while query.next():
+                    row=[query.value(i) for i in range(query.record().count())]
+                    registros.append(row)
+            else:
+                print(query.lastError())
+            producto.producto.cargarTablaProductos(registros)
         except Exception as error:
             print("Error mostrarProducto",error)
+    @staticmethod
+    def oneproducto(id):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT * FROM producto WHERE id_producto = :id')
+            query.bindValue(':id',int(id))
+            if query.exec():
+                while query.next():
+                    for i in range(8):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as err:
+            print ("Error fichero cliente", err)
+    def modficarProducto(modicarProducto):
+        try:
+            consulta = ('update producto set nombre=:nombre, precio=:precio, stock=:stock '
+                        'where id_producto=:id_producto')  # Removed the comma before 'where'
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.bindValue(':id_producto', int(modicarProducto[0]))
+            query.bindValue(':nombre', str(modicarProducto[1]))
+            query.bindValue(':precio', str(modicarProducto[2]))
+            query.bindValue(':stock', int(modicarProducto[3]))
+            print(modicarProducto)
+            if query.exec():
+                return True
+            else:
+                print(query.lastError().text())
+                return False
+        except Exception as error:
+            print(error, " en modifCliente")
+
+    def borrarProducto(idProducto):
+        try:
+            consulta = 'DELETE FROM producto WHERE id_producto = :id_producto'
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.bindValue(':id_producto', int(idProducto))
+            print(idProducto)
+            if query.exec():
+                return True
+            else:
+                print(query.lastError().text())
+                return False
+        except Exception as error:
+            print(error, " en borrarProducto")
+
+
+

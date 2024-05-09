@@ -44,7 +44,6 @@ class cliente:
                 categoria = "Particular"
 
             newCliente.append(categoria)
-            print(newCliente)
             conexion.conexion.guardarCliente(newCliente)
             conexion.conexion.mostrarCliente()
         except Exception as error:
@@ -90,7 +89,34 @@ class cliente:
     def bajaCliente(self):
         try:
             codigo = var.ui.leCodigo.text()
-            conexion.conexion.bajaCliente(codigo)
+            if conexion.conexion.clienteEstaDadoDeBaja(codigo):
+                print("El cliente ya está dado de baja.")
+                return
+            else:
+                conexion.conexion.bajaCliente(codigo)
             conexion.conexion.mostrarCliente()
         except Exception as error:
             print("Error en baja cliente cliente ",error)
+    def modifCliente(self):
+        try:
+            cliente = [
+                var.ui.leCodigo,
+                var.ui.leNombre,
+                var.ui.leApellidos,
+                var.ui.leDireccion,
+                var.ui.leFecha,
+                var.ui.leTelefono,
+                var.ui.leEmail
+            ]
+            modifCliente = []
+            for i in cliente:
+                modifCliente.append(i.text().title())
+            if var.ui.rbtEmpresario.isChecked():
+                categoria = "Empresario"
+            elif var.ui.rbtParticular.isChecked():
+                categoria = "Particular"
+            modifCliente.append(categoria)
+            conexion.conexion.modifCliente(modifCliente)
+            conexion.conexion.mostrarCliente()
+        except Exception as error:
+            print(error," modifCliente")
