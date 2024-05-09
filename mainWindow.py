@@ -375,6 +375,9 @@ class Ui_MainWindow(object):
         self.tabProd.setHorizontalHeaderItem(3, item)
         self.gridLayout_5.addWidget(self.tabProd, 1, 0, 1, 1)
         self.tabWidget.addTab(self.productos, "")
+        self.tab = QtWidgets.QWidget()
+        self.tab.setObjectName("tab")
+        self.tabWidget.addTab(self.tab, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
@@ -411,7 +414,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionLimpiar_Panel)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -465,6 +468,7 @@ class Ui_MainWindow(object):
         item = self.tabProd.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Stock"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.productos), _translate("MainWindow", "Productos"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("MainWindow", "Página"))
         self.menuSalir.setTitle(_translate("MainWindow", "Archivo"))
         self.menuInformes.setTitle(_translate("MainWindow", "Informes"))
         self.toolBar.setWindowTitle(_translate("MainWindow", "toolBar"))
