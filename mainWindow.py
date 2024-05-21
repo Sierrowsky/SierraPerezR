@@ -42,8 +42,8 @@ class Ui_MainWindow(object):
 "font: 11pt \"Arial\";\n"
 "background-color:rgb(100,100,100);\n"
 "}")
-        self.tabCli.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.NoSelection)
-        self.tabCli.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectItems)
+        self.tabCli.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.tabCli.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tabCli.setShowGrid(True)
         self.tabCli.setObjectName("tabCli")
         self.tabCli.setColumnCount(7)
@@ -358,7 +358,8 @@ class Ui_MainWindow(object):
 "font: 11pt \"Arial\";\n"
 "background-color:rgb(100,100,100);\n"
 "}")
-        self.tabProd.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectItems)
+        self.tabProd.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.tabProd.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tabProd.setObjectName("tabProd")
         self.tabProd.setColumnCount(4)
         self.tabProd.setRowCount(0)
@@ -395,6 +396,8 @@ class Ui_MainWindow(object):
 "font: 11pt \"Arial\";\n"
 "background-color:rgb(100,100,100);\n"
 "}")
+        self.tableWidget.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.tableWidget.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableWidget.setObjectName("tableWidget")
         self.tableWidget.setColumnCount(3)
         self.tableWidget.setRowCount(0)
@@ -456,6 +459,8 @@ class Ui_MainWindow(object):
 "font: 11pt \"Arial\";\n"
 "background-color:rgb(100,100,100);\n"
 "}")
+        self.tableWidget_2.setSelectionMode(QtWidgets.QAbstractItemView.SelectionMode.SingleSelection)
+        self.tableWidget_2.setSelectionBehavior(QtWidgets.QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableWidget_2.setObjectName("tableWidget_2")
         self.tableWidget_2.setColumnCount(5)
         self.tableWidget_2.setRowCount(0)
@@ -499,7 +504,7 @@ class Ui_MainWindow(object):
         self.label_5.setMaximumSize(QtCore.QSize(90, 20))
         self.label_5.setObjectName("label_5")
         self.gridLayout_7.addWidget(self.label_5, 1, 7, 1, 1)
-        spacerItem29 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem29 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.gridLayout_7.addItem(spacerItem29, 3, 11, 1, 1)
         self.pushButton_3 = QtWidgets.QPushButton(parent=self.frame_4)
         self.pushButton_3.setObjectName("pushButton_3")
@@ -550,7 +555,7 @@ class Ui_MainWindow(object):
         self.label_2 = QtWidgets.QLabel(parent=self.frame_4)
         self.label_2.setObjectName("label_2")
         self.gridLayout_7.addWidget(self.label_2, 3, 0, 1, 1)
-        spacerItem30 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        spacerItem30 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.gridLayout_7.addItem(spacerItem30, 3, 3, 1, 1)
         self.gridLayout_8.addWidget(self.frame_4, 0, 0, 1, 5)
         self.gridLayout_6.addWidget(self.frame_3, 1, 0, 1, 1)
@@ -591,7 +596,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionLimpiar_Panel)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -659,7 +664,7 @@ class Ui_MainWindow(object):
         item = self.tableWidget_2.horizontalHeaderItem(1)
         item.setText(_translate("MainWindow", "IDFactura"))
         item = self.tableWidget_2.horizontalHeaderItem(2)
-        item.setText(_translate("MainWindow", "IDProducto"))
+        item.setText(_translate("MainWindow", "Nombre Producto"))
         item = self.tableWidget_2.horizontalHeaderItem(3)
         item.setText(_translate("MainWindow", "Cantidad"))
         item = self.tableWidget_2.horizontalHeaderItem(4)
