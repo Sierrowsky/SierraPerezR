@@ -6,6 +6,7 @@ import main
 import mainWindow
 import producto
 import var, sys
+import ventas
 from mainWindow import *
 from auxiliar import *
 class Main(QtWidgets.QMainWindow):
@@ -18,6 +19,9 @@ class Main(QtWidgets.QMainWindow):
         conexion.conexion.conexion()
         conexion.conexion.mostrarCliente()
         conexion.conexion.mostrarProducto()
+        conexion.conexion.cargarCliente()
+        conexion.conexion.cargarProducto()
+        conexion.conexion.cargarFactura()
         """
         Eventos Botones
         """
@@ -28,6 +32,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModificar.clicked.connect(cliente.cliente.modifCliente)
         var.ui.btnModifProd.clicked.connect(producto.producto.modifProducto)
         var.ui.btnEliminarProd.clicked.connect(producto.producto.eliminarProducto)
+        var.ui.btnFechaFactura.clicked.connect(eventos.Eventos.abrirCalendar)
+        var.ui.btnCrearFactura.clicked.connect(ventas.ventas.crearFactura)
         """    
         Eventos Botones
         """

@@ -1,4 +1,5 @@
 import cliente
+import ventas
 from calendarWindow import *
 from datetime import datetime
 import sys,var
@@ -14,3 +15,6 @@ class Calendar(QtWidgets.QDialog):
         if var.ui.btnCalendar.clicked:
             var.calendar.calendari.setSelectedDate(QtCore.QDate(ano,mes,dia))
             var.calendar.calendari.clicked.connect(cliente.cliente.cargarFecha)
+        if var.ui.btnFechaFactura.clicked:
+            var.calendar.calendari.setSelectedDate(QtCore.QDate(ano, mes, dia))
+            var.calendar.calendari.clicked.connect(ventas.ventas.cargarFecha)

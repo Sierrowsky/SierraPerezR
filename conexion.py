@@ -5,6 +5,8 @@ from PyQt6 import QtWidgets, QtSql
 import cliente
 import producto
 import var
+import ventas
+
 
 class conexion:
     def conexion(self=None):
@@ -211,5 +213,59 @@ class conexion:
         except Exception as error:
             print(error, " en borrarProducto")
 
+    def cargarCliente(self=None):
+        try:
+            var.ui.cbCliente.clear()
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT id_cliente, nombre FROM cliente WHERE fecha_baja IS NULL ORDER BY id_cliente')
+            if query.exec():
+                var.ui.cbCliente.addItem('')
+                while query.next():
+                    var.ui.cbCliente.addItem(f"{query.value(0)}. {query.value(1)}")
+            else:
+                raise Exception("Query execution failed")
+        except Exception as error:
+            print(f"Error loading clients: {error}")
+
+    def cargarProducto(self=None):
+        try:
+            var.ui.cbProducto.clear()
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT id_producto, nombre FROM producto ORDER BY id_producto')
+            if query.exec():
+                var.ui.cbProducto.addItem('')
+                while query.next():
+                    var.ui.cbProducto.addItem(f"{query.value(0)}. {query.value(1)}")
+            else:
+                raise Exception("Query execution failed")
+        except Exception as error:
+            print(f"Error loading products: {error}")
+
+    def altaFactura(registro):
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('INSERT INTO facturas (idCliente, fecha) VALUES (:idCliente, :fecha)')
+            query.bindValue(":idCliente", str(registro[0]))
+            query.bindValue(":fecha", str(registro[1]))
+            if query.exec():
+                print("Factura guardada")
+            else:
+                raise Exception(query.lastError().text())
+        except Exception as error:
+            print("Error al guardar factura:", error)
+
+    @staticmethod
+    def cargarFactura():
+        try:
+            registros = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT idFactura, idCliente, fecha FROM facturas")
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    registros.append(row)
+            ventas.ventas.cargarTablaFacturas(registros)
+        except Exception as error:
+            print("Error cargando tabla facturas:", error)
 
 
