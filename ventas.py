@@ -1,4 +1,7 @@
-from PyQt6.uic.properties import QtWidgets, QtCore
+from PyQt6.QtCore import Qt
+from PyQt6 import QtWidgets, QtGui
+from PyQt6.QtWidgets import QTableWidgetItem
+from PyQt6.uic.properties import QtWidgets, QtCore, QtGui
 
 import conexion
 import var
@@ -13,28 +16,25 @@ class ventas:
 
     def crearFactura(self):
         try:
-            cliente=  var.ui.cbCliente.currentText()
-            codCli = cliente.split(" ")[0]
-            registro = [codCli,var.ui.leFechaFactura.text()]
-            conexion.conexion.altaFactura(registro)
+            fecha_factura = var.ui.leFechaFactura.text().strip()
+            cliente = var.ui.cbCliente.currentText().strip()
+            if not fecha_factura or not cliente:
+                print("Faltan Datos")
+            else:
+                codCli = cliente.split(" ")[0]
+                registro = [codCli, fecha_factura]
+                conexion.conexion.altaFactura(registro)
         except Exception as error:
             print("error en crear factuyra " , error)
 
     def cargarTablaFacturas(registros):
         try:
-            index = 0
-            for registro in registros:
-                var.ui.tblFactura.setRowCount(index + 1)
-                var.ui.tblFactura.setItem(index, 0, QtWidgets.QTableWidgetItem(str(registro[0])))
-                var.ui.tblFactura.setItem(index, 1, QtWidgets.QTableWidgetItem(str(registro[1])))
-                var.ui.tblFactura.setItem(index, 2, QtWidgets.QTableWidgetItem(str(registro[1])))
-                var.ui.tblFactura.item(index, 0).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                var.ui.tblFactura.item(index, 1).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                var.ui.tblFactura.item(index, 2).setTextAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
-                index += 1
-
+            print(registros)
+            var.ui.tblFactura.setRowCount(len(registros))
+            for index, registro in enumerate(registros):
+                for col_index, value in enumerate(registro):
+                    item = QTableWidgetItem(str(value))
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    var.ui.tblFactura.setItem(index, col_index, item)
         except Exception as error:
-            print("error en cargarTablafacturas", error)
-        except Exception as error:
-            print("Error en cargarTablaFacturas:", error)
-
+            print("error en cargar tabla facturas:", error)

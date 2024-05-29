@@ -251,6 +251,7 @@ class conexion:
                 print("Factura guardada")
             else:
                 raise Exception(query.lastError().text())
+            conexion.cargarFactura()
         except Exception as error:
             print("Error al guardar factura:", error)
 

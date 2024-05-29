@@ -16,12 +16,18 @@ class producto:
             print("Error al limpiar productos," ,error)
     def crearProducto(self):
         try:
-            producto = [var.ui.leNombreProd,var.ui.lePrecio,var.ui.leStock]
-            newproducto = []
-            for i in producto:
-                newproducto.append(i.text().title())
-            conexion.conexion.crearProducto(newproducto)
-            conexion.conexion.mostrarProducto()
+            nombre_producto = var.ui.leNombreProd.text().strip()
+            precio = var.ui.lePrecio.text().strip()
+            stock = var.ui.leStock.text().strip()
+            if not nombre_producto or precio or stock:
+                print("Faltan Datos")
+            else:
+                producto = [var.ui.leNombreProd,var.ui.lePrecio,var.ui.leStock]
+                newproducto = []
+                for i in producto:
+                    newproducto.append(i.text().title())
+                conexion.conexion.crearProducto(newproducto)
+                conexion.conexion.mostrarProducto()
         except Exception as error:
             print("error al crear productos, ",error)
     def cargarTablaProductos(registros):

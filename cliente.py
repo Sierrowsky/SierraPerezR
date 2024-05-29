@@ -27,25 +27,58 @@ class cliente:
 
     def altaCliente(self):
         try:
-            cliente = [
-                var.ui.leNombre,
-                var.ui.leApellidos,
-                var.ui.leDireccion,
-                var.ui.leFecha,
-                var.ui.leTelefono,
-                var.ui.leEmail
-            ]
-            newCliente = []
-            for i in cliente:
-                newCliente.append(i.text().title())
             if var.ui.rbtEmpresario.isChecked():
-                categoria = "Empresario"
-            elif var.ui.rbtParticular.isChecked():
-                categoria = "Particular"
+                nombre = var.ui.leNombre.text().strip()
+                direccion = var.ui.leNombre.text().strip()
+                fecha = var.ui.leNombre.text().strip()
+                telefono = var.ui.leNombre.text().strip()
+                email = var.ui.leNombre.text().strip()
+                if not nombre or direccion or fecha or telefono or email:
+                    print("faltan datos")
+                else:
+                    cliente = [
+                        var.ui.leNombre,
+                        var.ui.leApellidos,
+                        var.ui.leDireccion,
+                        var.ui.leFecha,
+                        var.ui.leTelefono,
+                        var.ui.leEmail
+                    ]
+                    newCliente = []
+                    for i in cliente:
+                        newCliente.append(i.text().title())
+                    categoria = "Empresario"
 
-            newCliente.append(categoria)
-            conexion.conexion.guardarCliente(newCliente)
-            conexion.conexion.mostrarCliente()
+                    newCliente.append(categoria)
+                    conexion.conexion.guardarCliente(newCliente)
+                    conexion.conexion.mostrarCliente()
+            elif var.ui.rbtParticular.isChecked():
+                nombre = var.ui.leNombre.text().strip()
+                apellidos = var.ui.leNombre.text().strip()
+                direccion = var.ui.leNombre.text().strip()
+                fecha = var.ui.leNombre.text().strip()
+                telefono = var.ui.leNombre.text().strip()
+                email = var.ui.leNombre.text().strip()
+                if not nombre or apellidos or direccion or fecha or telefono or email:
+                    print("faltan datos")
+                else:
+                    cliente = [
+                        var.ui.leNombre,
+                        var.ui.leApellidos,
+                        var.ui.leDireccion,
+                        var.ui.leFecha,
+                        var.ui.leTelefono,
+                        var.ui.leEmail
+                    ]
+                    newCliente = []
+                    for i in cliente:
+                        newCliente.append(i.text().title())
+                    categoria = "Particular"
+
+                    newCliente.append(categoria)
+                    conexion.conexion.guardarCliente(newCliente)
+                    conexion.conexion.mostrarCliente()
+
         except Exception as error:
             print(error, " alta cliente")
 
