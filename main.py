@@ -40,6 +40,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(eventos.Eventos.salir)
         var.ui.actionLimpiar_Panel.triggered.connect(cliente.cliente.limpiar)
         var.ui.actionLimpiar_Panel.triggered.connect(producto.producto.limpiarProductos)
+        var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarVentas)
         """
         Eventos Radio Button
         """

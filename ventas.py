@@ -6,6 +6,17 @@ from PyQt6.uic.properties import QtWidgets, QtCore, QtGui
 import conexion
 import var
 class ventas:
+    @staticmethod
+    def limpiarVentas():
+        try:
+            venta = [var.ui.leFechaFactura,var.ui.leCodigoFactura]
+            var.ui.cbCliente.clear()
+            for i in venta:
+                i.setText("")
+
+        except Exception as error:
+            print(error)
+
     def cargarFecha(qDate):
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -38,3 +49,25 @@ class ventas:
                     var.ui.tblFactura.setItem(index, col_index, item)
         except Exception as error:
             print("error en cargar tabla facturas:", error)
+"""
+    @staticmethod
+    def cargarProducto():
+        try:
+            ventas.limpiarVentas()
+            selected_row = var.ui.tabProd.currentRow()
+            if selected_row != -1:
+                id_producto = var.ui.tabProd.item(selected_row, 0).text()
+                registro = conexion.conexion.oneproducto(id_producto)
+                if registro:
+                    datos = [var.ui.leCodigoPrd, var.ui.leNombreProd, var.ui.lePrecio, var.ui.sbStock]
+                    for dato, value in zip(datos, registro):
+                        if isinstance(dato, QLineEdit):
+                            dato.setText(str(value))
+                        elif isinstance(dato, QSpinBox):
+                            dato.setValue(int(value))
+
+
+            else:
+                print("No row selected")
+        except Exception as error:
+            print("Error cargar Clientes: ", error)"""

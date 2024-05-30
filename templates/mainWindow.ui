@@ -38,7 +38,7 @@
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="clientes">
        <attribute name="title">
@@ -1075,23 +1075,7 @@ background-color:rgb(100,100,100);
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="leStock">
-                 <property name="minimumSize">
-                  <size>
-                   <width>20</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="maximumSize">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                 <property name="layoutDirection">
-                  <enum>Qt::RightToLeft</enum>
-                 </property>
-                </widget>
+                <widget class="QSpinBox" name="sbStock"/>
                </item>
                <item>
                 <widget class="QLabel" name="lblUnidades">

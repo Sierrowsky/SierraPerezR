@@ -13,6 +13,11 @@ class Eventos():
             var.calendar.show()
         except Exception as error:
             print(error, " Events")
+    def abrirCalendarVentas(self):
+        try:
+            var.calendarVentas.show()
+        except Exception as error:
+            print(error, " eventos calendarVentas")
     @staticmethod
     def resiceTabCli():
         try:
