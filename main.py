@@ -22,6 +22,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.conexion.cargarCliente()
         conexion.conexion.cargarProducto()
         conexion.conexion.cargarFactura()
+        conexion.conexion.cargarVenta()
         """
         Eventos Botones
         """
@@ -34,12 +35,14 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnEliminarProd.clicked.connect(producto.producto.eliminarProducto)
         var.ui.btnFechaFactura.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnCrearFactura.clicked.connect(ventas.ventas.crearFactura)
+        var.ui.btnAgregarLinea.clicked.connect(ventas.ventas.crearVenta)
         """    
         Eventos Botones
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.salir)
         var.ui.actionLimpiar_Panel.triggered.connect(cliente.cliente.limpiar)
         var.ui.actionLimpiar_Panel.triggered.connect(producto.producto.limpiarProductos)
+        var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarFacturas)
         var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarVentas)
         """
         Eventos Radio Button
@@ -54,6 +57,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
         var.ui.tabProd.clicked.connect(producto.producto.cargarProducto)
         var.ui.cbHistorico.toggled.connect(conexion.conexion.mostrarCliente)
+        var.ui.tblFactura.clicked.connect(ventas.ventas.cargarVenta)
 
         """
         Eventos Tool Bar

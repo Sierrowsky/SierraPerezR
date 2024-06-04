@@ -217,7 +217,7 @@ class conexion:
         try:
             var.ui.cbCliente.clear()
             query = QtSql.QSqlQuery()
-            query.prepare('SELECT id_cliente, nombre FROM cliente WHERE fecha_baja IS NULL ORDER BY id_cliente')
+            query.prepare('SELECT id_cliente, nombre FROM cliente ORDER BY id_cliente')
             if query.exec():
                 var.ui.cbCliente.addItem('')
                 while query.next():
@@ -270,3 +270,85 @@ class conexion:
             print("Error cargando tabla facturas:", error)
 
 
+    @staticmethod
+    def oneFactura(id):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT * FROM facturas WHERE idFactura = :id')
+            query.bindValue(':id',int(id))
+            if query.exec():
+                while query.next():
+                    for i in range(3):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as err:
+            print ("Error fichero cliente", err)
+
+#############################################Ventas######################################
+
+    def altaVenta(registro):
+        try:
+            idProducto=registro[1]
+            print(idProducto)
+            precio=conexion.getPrecio(idProducto)
+            newReg=[]
+            for i in registro:
+                newReg.append(i)
+            newReg.append(precio)
+            print(newReg)
+            query = QtSql.QSqlQuery()
+            query.prepare('INSERT INTO venta (idFactura, idProducto,cantidad,precio) VALUES (:idFactura, :idProducto,:cantidad,:precio)')
+            query.bindValue(":idFactura", int(newReg[0]))
+            query.bindValue(":idProducto", int(newReg[1]))
+            query.bindValue(":cantidad", int(newReg[2]))
+            query.bindValue(":precio", str(newReg[3]))
+
+            if query.exec():
+                print("Venta guardada")
+            else:
+                raise Exception(query.lastError().text())
+            conexion.cargarVenta()
+        except Exception as error:
+            print("Error al guardar factura:", error)
+    def getPrecio(idProducto):
+        try:
+            query =QtSql.QSqlQuery()
+            query.prepare('SELECT precio FROM producto where id_producto = :id')
+            query.bindValue(":id",str(idProducto))
+            if query.exec():
+                while query.next():
+                    precio= query.value(0)
+                    print(precio)
+                    return precio
+            print(query.lastError().text())
+        except Exception as error:
+            print("Error con el precio", error)
+
+    @staticmethod
+    def cargarVenta():
+        try:
+            registros = []
+            query = QtSql.QSqlQuery()
+            query.prepare("SELECT * FROM venta")
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    registros.append(row)
+            ventas.ventas.cargarTablaVentas(registros)
+        except Exception as error:
+            print("Error cargando tabla facturas:", error)
+    @staticmethod
+    def oneVenta(id):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('SELECT idVenta,idFactura,idProducto,cantidad FROM venta WHERE idVenta = :id')
+            query.bindValue(':id',int(id))
+            if query.exec():
+                while query.next():
+                    for i in range(4):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as err:
+            print("Error oneFactura", err)

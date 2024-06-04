@@ -1,16 +1,16 @@
 from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets, QtGui
-from PyQt6.QtWidgets import QTableWidgetItem
+from PyQt6.QtWidgets import QTableWidgetItem, QLineEdit, QSpinBox, QComboBox
 from PyQt6.uic.properties import QtWidgets, QtCore, QtGui
 
 import conexion
 import var
 class ventas:
     @staticmethod
-    def limpiarVentas():
+    def limpiarFacturas():
         try:
             venta = [var.ui.leFechaFactura,var.ui.leCodigoFactura]
-            var.ui.cbCliente.clear()
+            var.ui.cbCliente.setCurrentIndex(0)
             for i in venta:
                 i.setText("")
 
@@ -49,25 +49,71 @@ class ventas:
                     var.ui.tblFactura.setItem(index, col_index, item)
         except Exception as error:
             print("error en cargar tabla facturas:", error)
-"""
     @staticmethod
-    def cargarProducto():
+    def cargarVenta():
         try:
-            ventas.limpiarVentas()
-            selected_row = var.ui.tabProd.currentRow()
+            ventas.limpiarFacturas()
+            selected_row = var.ui.tblFactura.currentRow()
             if selected_row != -1:
-                id_producto = var.ui.tabProd.item(selected_row, 0).text()
-                registro = conexion.conexion.oneproducto(id_producto)
+                idVenta = var.ui.tblFactura.item(selected_row, 0).text()
+                registro = conexion.conexion.oneFactura(idVenta)
                 if registro:
-                    datos = [var.ui.leCodigoPrd, var.ui.leNombreProd, var.ui.lePrecio, var.ui.sbStock]
+                    datos = [var.ui.leCodigoFactura, var.ui.cbCliente, var.ui.leFechaFactura]
                     for dato, value in zip(datos, registro):
                         if isinstance(dato, QLineEdit):
                             dato.setText(str(value))
-                        elif isinstance(dato, QSpinBox):
-                            dato.setValue(int(value))
-
-
+                        elif isinstance(dato, QComboBox):
+                            dato.setCurrentIndex(int(value))
+                Fact=var.ui.leCodigoFactura.text()
+                var.ui.leCodigoFactura2.setText(Fact)
             else:
                 print("No row selected")
         except Exception as error:
-            print("Error cargar Clientes: ", error)"""
+            print("Error cargar Clientes: ", error)
+#############################################################VENTAS#########################################
+    @staticmethod
+    def limpiarVentas():
+        try:
+            venta = [var.ui.leCodigoFactura2,var.ui.leCodigoVenta]
+            var.ui.sbCantidad.setValue(0)
+            var.ui.cbProducto.setCurrentIndex(0)
+            for i in venta:
+                i.setText("")
+
+        except Exception as error:
+            print(error)
+    @staticmethod
+    def crearVenta():
+        try:
+            codFac = var.ui.leCodigoFactura2.text().strip()
+            idProducto = var.ui.cbProducto.currentText().strip()
+            idProdu = idProducto.split(". ")[0]
+            sbStock= var.ui.sbCantidad.value()
+            if not codFac or not idProducto or not sbStock:
+                print("Faltan Datos")
+            else:
+                registro = [codFac, idProdu,sbStock]
+                conexion.conexion.altaVenta(registro)
+        except Exception as error:
+            print("error en crear factuyra ", error)
+
+    def cargarTablaVentas(registro):
+        try:
+            ventas.limpiarVentas()
+            selected_row = var.ui.tblLineaFactura.currentRow()
+            if selected_row != -1:
+                idVenta = var.ui.tblLineaFactura.item(selected_row, 0).text()
+                registro = conexion.conexion.oneVenta(idVenta)
+                if registro:
+                    datos = [var.ui.leCodigoVenta,var.ui.leCodigoFactura2, var.ui.cbProducto, var.ui.sbCantidad]
+                    for dato, value in zip(datos, registro):
+                        if isinstance(dato, QLineEdit):
+                            dato.setText(str(value))
+                        elif isinstance(dato, QComboBox):
+                            dato.setCurrentIndex(int(value))
+                        elif isinstance(dato,QSpinBox):
+                            dato.setValue(int(value))
+            else:
+                print("No row selected")
+        except Exception as error:
+            print("Error cargar Clientes: ", error)

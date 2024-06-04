@@ -12,8 +12,9 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1024, 768)
-        MainWindow.setMaximumSize(QtCore.QSize(1024, 768))
+        MainWindow.resize(1440, 900)
+        MainWindow.setMinimumSize(QtCore.QSize(1440, 900))
+        MainWindow.setMaximumSize(QtCore.QSize(16777215, 16777215))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("C:/Users/a21pablosp/.designer/images/brand_cthulhu_icon_158944.ico"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
@@ -574,7 +575,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1024, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1440, 21))
         self.menubar.setObjectName("menubar")
         self.menuSalir = QtWidgets.QMenu(parent=self.menubar)
         self.menuSalir.setObjectName("menuSalir")
@@ -607,7 +608,7 @@ class Ui_MainWindow(object):
         self.toolBar.addAction(self.actionLimpiar_Panel)
 
         self.retranslateUi(MainWindow)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(2)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
