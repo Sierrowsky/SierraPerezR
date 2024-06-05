@@ -22,7 +22,6 @@ class Main(QtWidgets.QMainWindow):
         conexion.conexion.cargarCliente()
         conexion.conexion.cargarProducto()
         conexion.conexion.cargarFactura()
-        conexion.conexion.cargarVenta()
         """
         Eventos Botones
         """
@@ -54,10 +53,12 @@ class Main(QtWidgets.QMainWindow):
         """
         eventos.Eventos.resiceTabProd()
         eventos.Eventos.resiceTabCli()
+        eventos.Eventos.resicetblLineaFactura()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
         var.ui.tabProd.clicked.connect(producto.producto.cargarProducto)
         var.ui.cbHistorico.toggled.connect(conexion.conexion.mostrarCliente)
-        var.ui.tblFactura.clicked.connect(ventas.ventas.cargarVenta)
+        var.ui.tblFactura.clicked.connect(ventas.ventas.cargarFactura)
+        var.ui.tblLineaFactura.clicked.connect(ventas.ventas.cargarVentas)
 
         """
         Eventos Tool Bar

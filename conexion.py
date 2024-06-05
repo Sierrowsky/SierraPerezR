@@ -10,8 +10,8 @@ import ventas
 
 class conexion:
     def conexion(self=None):
-        var.bbdd='bbddR.db'
-        db=QtSql.QSqlDatabase.addDatabase('QSQLITE')
+        var.bbdd = 'bbddR.db'
+        db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(var.bbdd)
         if not db.open():
             print('error conexion')
@@ -19,6 +19,7 @@ class conexion:
         else:
             print('base datos encontrada')
             return True
+
     @staticmethod
     def guardarCliente(newCliente):
         try:
@@ -55,45 +56,48 @@ class conexion:
         except Exception as error:
             print("Error en clienteEstaDadoDeBaja:", error)
             return False
+
     @staticmethod
     def mostrarCliente():
         try:
             if var.ui.cbHistorico.isChecked():
-                consulta= 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
-            else :
+                consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
+            else:
                 consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente'
-            registros=[]
-            query=QtSql.QSqlQuery()
+            registros = []
+            query = QtSql.QSqlQuery()
             query.prepare(consulta)
             if query.exec():
                 while query.next():
-                    row=[query.value(i) for i in range(query.record().count())]
+                    row = [query.value(i) for i in range(query.record().count())]
                     registros.append(row)
             else:
                 print(query.lastError())
             cliente.cliente.cargarTablaClientes(registros)
         except Exception as error:
             print("Fallos en mostrar cliente ", error)
+
     @staticmethod
     def onecli(id):
         try:
             registro = []
             query = QtSql.QSqlQuery()
             query.prepare('SELECT * FROM cliente WHERE id_cliente = :id')
-            query.bindValue(':id',int(id))
+            query.bindValue(':id', int(id))
             if query.exec():
                 while query.next():
                     for i in range(8):
                         registro.append(str(query.value(i)))
             return registro
         except Exception as err:
-            print ("Error fichero cliente", err)
+            print("Error fichero cliente", err)
+
     def bajaCliente(codigo):
         try:
             fecha = datetime.date.today()
             print(fecha)
             fecha = fecha.strftime('%d/%m/%Y')
-            query=QtSql.QSqlQuery()
+            query = QtSql.QSqlQuery()
             query.prepare("UPDATE cliente set fecha_baja = :fechabaja where id_cliente = :codigo")
             query.bindValue(':fechabaja', str(fecha))
             query.bindValue(':codigo', str(codigo))
@@ -148,37 +152,40 @@ class conexion:
                 print(query.lastError().text())
                 return False
         except Exception as error:
-            print("Error CrearProducto",error)
+            print("Error CrearProducto", error)
+
     @staticmethod
     def mostrarProducto():
         try:
             consulta = 'SELECT id_producto,nombre,precio,stock FROM producto '
-            query=QtSql.QSqlQuery()
+            query = QtSql.QSqlQuery()
             query.prepare(consulta)
-            registros=[]
+            registros = []
             if query.exec():
                 while query.next():
-                    row=[query.value(i) for i in range(query.record().count())]
+                    row = [query.value(i) for i in range(query.record().count())]
                     registros.append(row)
             else:
                 print(query.lastError())
             producto.producto.cargarTablaProductos(registros)
         except Exception as error:
-            print("Error mostrarProducto",error)
+            print("Error mostrarProducto", error)
+
     @staticmethod
     def oneproducto(id):
         try:
             registro = []
             query = QtSql.QSqlQuery()
             query.prepare('SELECT * FROM producto WHERE id_producto = :id')
-            query.bindValue(':id',int(id))
+            query.bindValue(':id', int(id))
             if query.exec():
                 while query.next():
                     for i in range(8):
                         registro.append(str(query.value(i)))
             return registro
         except Exception as err:
-            print ("Error fichero cliente", err)
+            print("Error fichero cliente", err)
+
     def modficarProducto(modicarProducto):
         try:
             consulta = ('update producto set nombre=:nombre, precio=:precio, stock=:stock '
@@ -269,36 +276,36 @@ class conexion:
         except Exception as error:
             print("Error cargando tabla facturas:", error)
 
-
     @staticmethod
     def oneFactura(id):
         try:
             registro = []
             query = QtSql.QSqlQuery()
             query.prepare('SELECT * FROM facturas WHERE idFactura = :id')
-            query.bindValue(':id',int(id))
+            query.bindValue(':id', int(id))
             if query.exec():
                 while query.next():
                     for i in range(3):
                         registro.append(str(query.value(i)))
             return registro
         except Exception as err:
-            print ("Error fichero cliente", err)
+            print("Error fichero cliente", err)
 
-#############################################Ventas######################################
+    #############################################Ventas######################################
 
     def altaVenta(registro):
         try:
-            idProducto=registro[1]
+            idProducto = registro[1]
             print(idProducto)
-            precio=conexion.getPrecio(idProducto)
-            newReg=[]
+            precio = conexion.getPrecio(idProducto)
+            newReg = []
             for i in registro:
                 newReg.append(i)
             newReg.append(precio)
             print(newReg)
             query = QtSql.QSqlQuery()
-            query.prepare('INSERT INTO venta (idFactura, idProducto,cantidad,precio) VALUES (:idFactura, :idProducto,:cantidad,:precio)')
+            query.prepare(
+                'INSERT INTO venta (idFactura, idProducto,cantidad,precio) VALUES (:idFactura, :idProducto,:cantidad,:precio)')
             query.bindValue(":idFactura", int(newReg[0]))
             query.bindValue(":idProducto", int(newReg[1]))
             query.bindValue(":cantidad", int(newReg[2]))
@@ -311,14 +318,15 @@ class conexion:
             conexion.cargarVenta()
         except Exception as error:
             print("Error al guardar factura:", error)
+
     def getPrecio(idProducto):
         try:
-            query =QtSql.QSqlQuery()
+            query = QtSql.QSqlQuery()
             query.prepare('SELECT precio FROM producto where id_producto = :id')
-            query.bindValue(":id",str(idProducto))
+            query.bindValue(":id", str(idProducto))
             if query.exec():
                 while query.next():
-                    precio= query.value(0)
+                    precio = query.value(0)
                     print(precio)
                     return precio
             print(query.lastError().text())
@@ -326,11 +334,12 @@ class conexion:
             print("Error con el precio", error)
 
     @staticmethod
-    def cargarVenta():
+    def cargarVenta(dato):
         try:
             registros = []
             query = QtSql.QSqlQuery()
-            query.prepare("SELECT * FROM venta")
+            query.prepare("SELECT venta.idVenta, venta.idFactura, producto.nombre, venta.cantidad, venta.precio,(venta.cantidad * venta.precio) AS precio_total FROM venta INNER JOIN producto ON venta.idProducto = producto.id_producto Where idFactura = :dato")
+            query.bindValue(':dato',dato)
             if query.exec():
                 while query.next():
                     row = [query.value(i) for i in range(query.record().count())]
@@ -338,15 +347,18 @@ class conexion:
             ventas.ventas.cargarTablaVentas(registros)
         except Exception as error:
             print("Error cargando tabla facturas:", error)
+
     @staticmethod
     def oneVenta(id):
         try:
             registro = []
             query = QtSql.QSqlQuery()
-            query.prepare('SELECT idVenta,idFactura,idProducto,cantidad FROM venta WHERE idVenta = :id')
-            query.bindValue(':id',int(id))
+            query.prepare('''
+                        SELECT idVenta, idFactura, idProducto, cantidad FROM venta WHERE idVenta = :id
+                    ''')
+            query.bindValue(':id', int(id))
             if query.exec():
-                while query.next():
+                if query.next():
                     for i in range(4):
                         registro.append(str(query.value(i)))
             return registro

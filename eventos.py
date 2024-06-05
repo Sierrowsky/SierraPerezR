@@ -28,6 +28,15 @@ class Eventos():
         except Exception as error:
             print("error con tabCli", error)
     @staticmethod
+    def resicetblLineaFactura():
+        try:
+            header = var.ui.tblLineaFactura.horizontalHeader()
+            for i in range(var.ui.tblLineaFactura.columnCount()):
+                if i == 2:
+                    header.setSectionResizeMode(i,QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error :
+            print("error con tblLieneaVenta", error)
+    @staticmethod
     def resiceTabProd():
         try:
             header = var.ui.tabProd.horizontalHeader()

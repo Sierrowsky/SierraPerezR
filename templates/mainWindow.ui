@@ -1446,6 +1446,11 @@ background-color:rgb(100,100,100);
                <string>Precio</string>
               </property>
              </column>
+             <column>
+              <property name="text">
+               <string>Total</string>
+              </property>
+             </column>
             </widget>
            </item>
            <item row="0" column="0" colspan="5">
