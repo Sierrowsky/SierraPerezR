@@ -1,6 +1,7 @@
 from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets, QtGui
-from PyQt6.QtWidgets import QTableWidgetItem, QLineEdit, QSpinBox, QComboBox
+from PyQt6.QtWidgets import QTableWidgetItem, QLineEdit, QSpinBox, QComboBox, QPushButton, QHeaderView
+
 from PyQt6.uic.properties import QtWidgets, QtCore, QtGui
 
 import conexion
@@ -105,15 +106,25 @@ class ventas:
 
     def cargarTablaVentas(registros):
         try:
-            print(registros)
+            subtotal = 0.0
             var.ui.tblLineaFactura.setRowCount(len(registros))
             for index, registro in enumerate(registros):
                 for col_index, value in enumerate(registro):
                     item = QTableWidgetItem(str(value))
                     item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
                     var.ui.tblLineaFactura.setItem(index, col_index, item)
+                totalViaje = round(float(registro[4]) * float(registro[3]), 2)
+                subtotal = subtotal + totalViaje
+                iva = subtotal * 0.21
+                var.ui.txtSubtotal.setText(str('{:.2f}'.format(round(subtotal, 2))) + " €")
+                var.ui.txtIVA.setText(str('{:.2f}'.format(round(iva, 2))) + " €")
+                var.ui.txtTotal.setText(str('{:.2f}'.format(round(subtotal + iva, 2))) + " €")
+
         except Exception as error:
             print("error en cargar tabla facturas:", error)
+
+
+
     @  staticmethod
     def cargarVentas():
         try:
@@ -135,3 +146,29 @@ class ventas:
                 print("No row selected")
         except Exception as error:
             print("Error cargar Clientes: ", error)
+    def eliminarVenta(self):
+        try:
+            conexion.conexion.borrarLinea(var.ui.leCodigoVenta.text())
+            ventas.cargarVentas()
+        except Exception as error:
+            print("Error eliminar Venta: ", error)
+    def modifVenta(self):
+        try:
+            idVenta = var.ui.leCodigoVenta.text().strip()
+            idProducto = var.ui.cbProducto.currentText().strip()
+            idProdu = idProducto.split(". ")[0]
+            sbStock = var.ui.sbCantidad.value()
+            producto = [
+                idVenta,
+                idProdu,
+                sbStock,
+            ]
+            conexion.conexion.modifLinea(producto)
+            ventas.cargarVentas()
+        except Exception as error:
+            print("Error modificar Venta: ", error)
+    #def verFacturas(self):
+     #   try:
+
+      #  except Exception as error:
+       #     print("Error ver Factura: ", error)

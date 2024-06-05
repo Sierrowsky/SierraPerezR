@@ -35,6 +35,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnFechaFactura.clicked.connect(eventos.Eventos.abrirCalendar)
         var.ui.btnCrearFactura.clicked.connect(ventas.ventas.crearFactura)
         var.ui.btnAgregarLinea.clicked.connect(ventas.ventas.crearVenta)
+        var.ui.btnEliminarLinea.clicked.connect(ventas.ventas.eliminarVenta)
+        #var.ui.btnModificarLinea.clicked.connect(ventas.ventas.modifVenta)
+        #var.ui.btnVerFactura.clicked.connect(ventas.ventas.verFacturas)
         """    
         Eventos Botones
         """
@@ -43,6 +46,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionLimpiar_Panel.triggered.connect(producto.producto.limpiarProductos)
         var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarFacturas)
         var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarVentas)
+
         """
         Eventos Radio Button
         """
@@ -64,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         Eventos Tool Bar
         """
         var.ui.actionListado_Clientes.triggered.connect(informes.informes.reportCLientes)
+        var.ui.actionListado_Productos.triggered.connect(informes.informes.reportProductos)
 
     def toggleApellidos(checked):
         # Deshabilita el campo de entrada de apellidos si el radio button está marcado

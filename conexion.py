@@ -315,7 +315,7 @@ class conexion:
                 print("Venta guardada")
             else:
                 raise Exception(query.lastError().text())
-            conexion.cargarVenta()
+            conexion.cargarVenta(newReg[0])
         except Exception as error:
             print("Error al guardar factura:", error)
 
@@ -364,3 +364,39 @@ class conexion:
             return registro
         except Exception as err:
             print("Error oneFactura", err)
+
+    def borrarLinea(id):
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare("delete from producto where id_producto = :id")
+            query.bindValue(":id", int(id))
+            if query.exec():
+               print('Aviso', "producto eliminado correctamente")
+            else:
+                print('Aviso', "Error al borrar el producto")
+
+        except Exception as error:
+            print(error)
+
+    def modifLinea(producto):
+        try:
+            consulta = ('UPDATE venta '
+                        'SET idProducto = :idProducto, cantidad = :cantidad '
+                        'WHERE idVenta = :idVenta')
+
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.bindValue(':idVenta', int(producto[0]))
+            query.bindValue(':idProducto', str(producto[1]))
+            query.bindValue(':cantidad', int(producto[2]))
+            print(producto)
+
+            if query.exec():
+                return True
+
+            else:
+                print(query.lastError().text())
+                return False
+        except Exception as error:
+            print(error, " en modifLinea")
