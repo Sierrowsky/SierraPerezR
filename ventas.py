@@ -48,7 +48,7 @@ class ventas:
             for index, registro in enumerate(registros):
                 for col_index, value in enumerate(registro):
                     item = QTableWidgetItem(str(value))
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
+                    item.setTextAlignment(Qt.AlignmentFlag.AlignRight)
                     var.ui.tblFactura.setItem(index, col_index, item)
         except Exception as error:
             print("error en cargar tabla facturas:", error)
@@ -110,9 +110,14 @@ class ventas:
             var.ui.tblLineaFactura.setRowCount(len(registros))
             for index, registro in enumerate(registros):
                 for col_index, value in enumerate(registro):
-                    item = QTableWidgetItem(str(value))
-                    item.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
-                    var.ui.tblLineaFactura.setItem(index, col_index, item)
+                    if col_index == 2:
+                        item = QTableWidgetItem(str(value))
+                        item.setTextAlignment(Qt.AlignmentFlag.AlignLeft)
+                        var.ui.tblLineaFactura.setItem(index, col_index, item)
+                    else:
+                        item = QTableWidgetItem(str(value))
+                        item.setTextAlignment(Qt.AlignmentFlag.AlignRight)
+                        var.ui.tblLineaFactura.setItem(index, col_index, item)
                 totalViaje = round(float(registro[4]) * float(registro[3]), 2)
                 subtotal = subtotal + totalViaje
                 iva = subtotal * 0.21
@@ -148,8 +153,9 @@ class ventas:
             print("Error cargar Clientes: ", error)
     def eliminarVenta(self):
         try:
-            conexion.conexion.borrarLinea(var.ui.leCodigoVenta.text())
-            ventas.cargarVentas()
+            conexion.conexion.borrarLinea(var.ui.leCodigoVenta.text().strip())
+            conexion.conexion.cargarVenta(var.ui.leCodigoFactura2.text())
+            ventas.limpiarVentas()
         except Exception as error:
             print("Error eliminar Venta: ", error)
     def modifVenta(self):
@@ -164,11 +170,7 @@ class ventas:
                 sbStock,
             ]
             conexion.conexion.modifLinea(producto)
-            ventas.cargarVentas()
+            conexion.conexion.cargarVenta(var.ui.leCodigoFactura2.text())
+            ventas.limpiarVentas()
         except Exception as error:
             print("Error modificar Venta: ", error)
-    #def verFacturas(self):
-     #   try:
-
-      #  except Exception as error:
-       #     print("Error ver Factura: ", error)

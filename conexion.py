@@ -368,8 +368,9 @@ class conexion:
     def borrarLinea(id):
 
         try:
+            print(id)
             query = QtSql.QSqlQuery()
-            query.prepare("delete from producto where id_producto = :id")
+            query.prepare("delete from venta where idVenta = :id")
             query.bindValue(":id", int(id))
             if query.exec():
                print('Aviso', "producto eliminado correctamente")

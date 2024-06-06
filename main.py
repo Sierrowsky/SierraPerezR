@@ -36,8 +36,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnCrearFactura.clicked.connect(ventas.ventas.crearFactura)
         var.ui.btnAgregarLinea.clicked.connect(ventas.ventas.crearVenta)
         var.ui.btnEliminarLinea.clicked.connect(ventas.ventas.eliminarVenta)
-        #var.ui.btnModificarLinea.clicked.connect(ventas.ventas.modifVenta)
-        #var.ui.btnVerFactura.clicked.connect(ventas.ventas.verFacturas)
+        var.ui.btnModificarLinea.clicked.connect(ventas.ventas.modifVenta)
+        var.ui.btnVerFactura.clicked.connect(informes.informes.reportFacturas)
         """    
         Eventos Botones
         """

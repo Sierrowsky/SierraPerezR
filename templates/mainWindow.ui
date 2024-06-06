@@ -77,6 +77,9 @@ background-color:rgb(100,100,100);
           <property name="showGrid">
            <bool>true</bool>
           </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
           <column>
            <property name="text">
             <string>Codigo</string>
@@ -175,6 +178,18 @@ background-color:rgb(100,100,100);
              </item>
              <item>
               <widget class="QPushButton" name="btnAlta">
+               <property name="minimumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Alta</string>
                </property>
@@ -182,6 +197,18 @@ background-color:rgb(100,100,100);
              </item>
              <item>
               <widget class="QPushButton" name="btnModificar">
+               <property name="minimumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Modificar</string>
                </property>
@@ -189,6 +216,18 @@ background-color:rgb(100,100,100);
              </item>
              <item>
               <widget class="QPushButton" name="btnBaja">
+               <property name="minimumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>90</width>
+                 <height>25</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Baja</string>
                </property>
@@ -284,6 +323,9 @@ background-color:rgb(100,100,100);
                  </property>
                  <property name="styleSheet">
                   <string notr="true">background:  rgb(255, 254, 196)</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </item>
@@ -465,13 +507,13 @@ background-color:rgb(100,100,100);
                 <widget class="QLabel" name="lblNombre">
                  <property name="minimumSize">
                   <size>
-                   <width>50</width>
+                   <width>80</width>
                    <height>20</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>50</width>
+                   <width>80</width>
                    <height>20</height>
                   </size>
                  </property>
@@ -571,6 +613,21 @@ background-color:rgb(100,100,100);
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>125</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="maximumSize">
+                  <size>
+                   <width>125</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -639,13 +696,13 @@ background-color:rgb(100,100,100);
                 <widget class="QLabel" name="lblDireccion">
                  <property name="minimumSize">
                   <size>
-                   <width>60</width>
+                   <width>80</width>
                    <height>20</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>60</width>
+                   <width>80</width>
                    <height>20</height>
                   </size>
                  </property>
@@ -718,6 +775,9 @@ background-color:rgb(100,100,100);
                  </property>
                  <property name="layoutDirection">
                   <enum>Qt::RightToLeft</enum>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
                  </property>
                 </widget>
                </item>
@@ -866,6 +926,19 @@ background-color:rgb(100,100,100);
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_7">
                <item>
+                <spacer name="horizontalSpacer_15">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <widget class="QLabel" name="lblCodigoProd">
                  <property name="maximumSize">
                   <size>
@@ -898,20 +971,10 @@ background-color:rgb(100,100,100);
                  <property name="styleSheet">
                   <string notr="true">background:  rgb(255, 254, 196)</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_27">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <spacer name="verticalSpacer_8">
@@ -985,16 +1048,32 @@ background-color:rgb(100,100,100);
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_8">
                <item>
+                <spacer name="horizontalSpacer_17">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeType">
+                  <enum>QSizePolicy::Fixed</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>438</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item>
                 <widget class="QLabel" name="lblPrecio">
                  <property name="minimumSize">
                   <size>
-                   <width>60</width>
+                   <width>100</width>
                    <height>20</height>
                   </size>
                  </property>
                  <property name="maximumSize">
                   <size>
-                   <width>60</width>
+                   <width>100</width>
                    <height>20</height>
                   </size>
                  </property>
@@ -1023,6 +1102,9 @@ background-color:rgb(100,100,100);
                  <property name="text">
                   <string>0.00</string>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
                </item>
                <item>
@@ -1031,19 +1113,6 @@ background-color:rgb(100,100,100);
                   <string>€</string>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="horizontalSpacer_26">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <spacer name="verticalSpacer_7">
@@ -1197,6 +1266,9 @@ background-color:rgb(100,100,100);
           <property name="selectionBehavior">
            <enum>QAbstractItemView::SelectRows</enum>
           </property>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
           <column>
            <property name="text">
             <string>Codigo</string>
@@ -1221,9 +1293,9 @@ background-color:rgb(100,100,100);
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="facuracion">
        <attribute name="title">
-        <string>Página</string>
+        <string>Facuracion</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_6">
         <item row="1" column="0">
@@ -1274,6 +1346,9 @@ background-color:rgb(100,100,100);
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
              </property>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
              <column>
               <property name="text">
                <string>IDFactura</string>
@@ -1291,22 +1366,31 @@ background-color:rgb(100,100,100);
              </column>
             </widget>
            </item>
-           <item row="2" column="3">
-            <widget class="QLabel" name="lblSubtotal">
+           <item row="3" column="4">
+            <widget class="QLabel" name="txtIVA">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="minimumSize">
               <size>
-               <width>60</width>
+               <width>100</width>
                <height>20</height>
               </size>
              </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
+             <property name="layoutDirection">
+              <enum>Qt::RightToLeft</enum>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(247, 255, 158);</string>
              </property>
              <property name="text">
-              <string>Subtotal:</string>
+              <string/>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -1333,30 +1417,46 @@ background-color:rgb(100,100,100);
              <property name="text">
               <string/>
              </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
             </widget>
            </item>
-           <item row="3" column="4">
-            <widget class="QLabel" name="txtIVA">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
+           <item row="2" column="3">
+            <widget class="QLabel" name="lblSubtotal">
              <property name="minimumSize">
               <size>
-               <width>100</width>
+               <width>60</width>
                <height>20</height>
               </size>
              </property>
-             <property name="layoutDirection">
-              <enum>Qt::RightToLeft</enum>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">background-color: rgb(247, 255, 158);</string>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>20</height>
+              </size>
              </property>
              <property name="text">
-              <string/>
+              <string>Subtotal:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="3">
+            <widget class="QLabel" name="lblTotal">
+             <property name="minimumSize">
+              <size>
+               <width>60</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>60</width>
+               <height>20</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Total:</string>
              </property>
             </widget>
            </item>
@@ -1383,24 +1483,8 @@ background-color:rgb(100,100,100);
              <property name="text">
               <string/>
              </property>
-            </widget>
-           </item>
-           <item row="4" column="3">
-            <widget class="QLabel" name="lblTotal">
-             <property name="minimumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>60</width>
-               <height>20</height>
-              </size>
-             </property>
-             <property name="text">
-              <string>Total:</string>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
              </property>
             </widget>
            </item>
@@ -1421,6 +1505,9 @@ background-color:rgb(100,100,100);
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
              </property>
+             <attribute name="verticalHeaderVisible">
+              <bool>false</bool>
+             </attribute>
              <column>
               <property name="text">
                <string>ID_Venta</string>
@@ -1459,40 +1546,189 @@ background-color:rgb(100,100,100);
               <enum>QFrame::Box</enum>
              </property>
              <layout class="QGridLayout" name="gridLayout_7">
-              <item row="1" column="7">
+              <item row="1" column="2">
+               <spacer name="horizontalSpacer_14">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item row="9" column="9">
+               <widget class="QPushButton" name="btnModificarLinea">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Modificar</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QPushButton" name="btnVerFactura">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Ver</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QComboBox" name="cbCliente">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="5">
+               <widget class="QLabel" name="label_5">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Codigo Venta</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QLineEdit" name="leFechaFactura">
+                <property name="enabled">
+                 <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Codigo Factura</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="3" rowspan="10" colspan="2">
+               <widget class="Line" name="line">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="6">
                <widget class="QLineEdit" name="leCodigoVenta">
                 <property name="enabled">
                  <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
               <item row="3" column="8">
                <widget class="QLabel" name="label_6">
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>20</height>
+                 </size>
+                </property>
                 <property name="text">
                  <string>Cantidad</string>
                 </property>
                </widget>
               </item>
               <item row="3" column="9">
-               <widget class="QSpinBox" name="sbCantidad"/>
-              </item>
-              <item row="3" column="7">
-               <widget class="QComboBox" name="cbProducto">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
+               <widget class="QSpinBox" name="sbCantidad">
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
-              <item row="2" column="6">
+              <item row="2" column="5">
                <widget class="QLabel" name="label_8">
                 <property name="text">
                  <string>Codigo Factura</string>
@@ -1500,6 +1736,22 @@ background-color:rgb(100,100,100);
                </widget>
               </item>
               <item row="3" column="6">
+               <widget class="QComboBox" name="cbProducto">
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="5">
                <widget class="QLabel" name="label_7">
                 <property name="minimumSize">
                  <size>
@@ -1523,87 +1775,20 @@ background-color:rgb(100,100,100);
                 <property name="enabled">
                  <bool>false</bool>
                 </property>
-               </widget>
-              </item>
-              <item row="1" column="6">
-               <widget class="QLabel" name="label_5">
                 <property name="minimumSize">
                  <size>
-                  <width>90</width>
+                  <width>125</width>
                   <height>20</height>
                  </size>
                 </property>
                 <property name="maximumSize">
                  <size>
-                  <width>90</width>
+                  <width>125</width>
                   <height>20</height>
                  </size>
                 </property>
-                <property name="text">
-                 <string>Codigo Venta</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="4" rowspan="9" colspan="2">
-               <widget class="Line" name="line">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QLineEdit" name="leFechaFactura">
-                <property name="enabled">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QComboBox" name="cbCliente">
-                <property name="minimumSize">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>200</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_4">
-                <property name="minimumSize">
-                 <size>
-                  <width>90</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>90</width>
-                  <height>20</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>Codigo Factura</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="6">
-               <widget class="QPushButton" name="btnAgregarLinea">
-                <property name="text">
-                 <string>Agregar</string>
-                </property>
-               </widget>
-              </item>
-              <item row="8" column="0">
-               <widget class="QPushButton" name="btnCrearFactura">
-                <property name="text">
-                 <string>Crear</string>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
                 </property>
                </widget>
               </item>
@@ -1621,10 +1806,44 @@ background-color:rgb(100,100,100);
                 </property>
                </widget>
               </item>
-              <item row="2" column="7">
+              <item row="2" column="6">
                <widget class="QLineEdit" name="leCodigoFactura2">
                 <property name="enabled">
                  <bool>false</bool>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>125</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>125</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QPushButton" name="btnCrearFactura">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Crear</string>
                 </property>
                </widget>
               </item>
@@ -1651,8 +1870,8 @@ background-color:rgb(100,100,100);
                 </property>
                </widget>
               </item>
-              <item row="0" column="3">
-               <spacer name="horizontalSpacer_20">
+              <item row="1" column="11">
+               <spacer name="horizontalSpacer_5">
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
                 </property>
@@ -1664,18 +1883,43 @@ background-color:rgb(100,100,100);
                 </property>
                </spacer>
               </item>
-              <item row="3" column="10">
-               <spacer name="horizontalSpacer_23">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
+              <item row="9" column="10">
+               <widget class="QPushButton" name="btnEliminarLinea">
+                <property name="minimumSize">
                  <size>
-                  <width>40</width>
-                  <height>20</height>
+                  <width>90</width>
+                  <height>25</height>
                  </size>
                 </property>
-               </spacer>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Eliminar</string>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="8">
+               <widget class="QPushButton" name="btnAgregarLinea">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>Agregar</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -1684,6 +1928,47 @@ background-color:rgb(100,100,100);
          </widget>
         </item>
        </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>450</x>
+          <y>150</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_9">
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>70</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit">
+        <property name="geometry">
+         <rect>
+          <x>330</x>
+          <y>370</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -1708,6 +1993,7 @@ background-color:rgb(100,100,100);
      <string>Informes</string>
     </property>
     <addaction name="actionListado_Clientes"/>
+    <addaction name="actionListado_Productos"/>
    </widget>
    <addaction name="menuSalir"/>
    <addaction name="menuInformes"/>
@@ -1753,6 +2039,11 @@ background-color:rgb(100,100,100);
   <action name="actionListado_Clientes">
    <property name="text">
     <string>Listado Clientes</string>
+   </property>
+  </action>
+  <action name="actionListado_Productos">
+   <property name="text">
+    <string>Listado Productos</string>
    </property>
   </action>
  </widget>

@@ -23,8 +23,10 @@ class Eventos():
         try:
             header = var.ui.tabCli.horizontalHeader()
             for i in range(var.ui.tabCli.columnCount()):
-                if i == 3 or i==5:
+                if i==2 or i == 3 or i==5:
                     header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.Stretch)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
         except Exception as error:
             print("error con tabCli", error)
     @staticmethod
@@ -34,6 +36,8 @@ class Eventos():
             for i in range(var.ui.tblLineaFactura.columnCount()):
                 if i == 2:
                     header.setSectionResizeMode(i,QtWidgets.QHeaderView.ResizeMode.Stretch)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
         except Exception as error :
             print("error con tblLieneaVenta", error)
     @staticmethod
@@ -41,6 +45,10 @@ class Eventos():
         try:
             header = var.ui.tabProd.horizontalHeader()
             for i in range(var.ui.tabProd.columnCount()):
+                if i == 1:
                     header.setSectionResizeMode(i,QtWidgets.QHeaderView.ResizeMode.Stretch)
+                else:
+                    header.setSectionResizeMode(i, QtWidgets.QHeaderView.ResizeMode.ResizeToContents)
+
         except Exception as error:
             print("error con tabProd",error)
