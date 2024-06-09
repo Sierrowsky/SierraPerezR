@@ -315,7 +315,6 @@ class informes:
                 var.report.drawString(240, 665, titulo)
                 var.report.line(50, 660, 570, 660)
 
-                # Dibuja la imagen en el informe
                 var.report.drawImage(ruta_logo, 480, 725, width=40, height=40)
 
                 var.report.setFont('Helvetica', size=9)
@@ -339,15 +338,18 @@ class informes:
     @staticmethod
     def footInformeFactura(titulo):
         try:
-            var.report.line(50, 100, 525, 100)
+            var.report.line(50, 100, 570, 100)
             var.report.setFont('Helvetica', size=11)
-            var.report.drawString(440, 85, f'Subtotal: {var.ui.txtSubtotal.text()}')
-            var.report.drawString(440, 70, f'IVA: {var.ui.txtIVA.text()}')
-            var.report.drawString(440, 55, f'Total: {var.ui.txtTotal.text()}')
+            var.report.drawString(430, 85, f'Subtotal:')
+            var.report.drawString(430, 70, f'IVA:')
+            var.report.drawString(430, 55, f'Total:')
+            var.report.drawString(490, 85, var.ui.txtSubtotal.text())
+            var.report.drawString(490, 70, var.ui.txtIVA.text())
+            var.report.drawString(490, 55, var.ui.txtTotal.text())
 
             fecha = datetime.today().strftime('%d-%m-%Y %H:%M:%S')
             var.report.setFont('Helvetica-Oblique', size=7)
-            var.report.line(50, 50, 525, 50)
+            var.report.line(50, 50, 570, 50)
             var.report.drawString(50, 40, fecha)
             var.report.drawString(250, 40, titulo)
             var.report.drawString(490, 40, f'Página {var.report.getPageNumber()}')
