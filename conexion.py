@@ -9,7 +9,14 @@ import ventas
 
 
 class conexion:
+    """
+    Clase para realizar las operaciones relacionadas con la base de datos
+    """
     def conexion(self=None):
+        """
+        Metodo para conectarse a la base de datos
+        :return:
+        """
         var.bbdd = 'bbddR.db'
         db = QtSql.QSqlDatabase.addDatabase('QSQLITE')
         db.setDatabaseName(var.bbdd)
@@ -22,6 +29,12 @@ class conexion:
 
     @staticmethod
     def guardarCliente(newCliente):
+        """
+        MEtodo para guardar el cliente
+        :param newCliente: datos del cliente
+        :type newCliente: list
+        :return:
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare(
@@ -44,21 +57,30 @@ class conexion:
 
     @staticmethod
     def clienteEstaDadoDeBaja(codigo):
+        """
+        MEtodo par revisar si un cliente esta dado de baja
+        :param codigo: id del cliente
+        :return:
+        """
         try:
             consulta = "SELECT COUNT(*) FROM cliente WHERE id_cliente = ? AND fecha_baja IS NOT NULL"
             query = QtSql.QSqlQuery()
             query.prepare(consulta)
             query.addBindValue(codigo)
             if query.exec() and query.next():
-                return query.value(0) > 0  # If count > 0, client is marked as inactive
+                return query.value(0) > 0
             else:
-                return False  # Assuming no result means the client is not marked as inactive
+                return False
         except Exception as error:
             print("Error en clienteEstaDadoDeBaja:", error)
             return False
 
     @staticmethod
     def mostrarCliente():
+        """
+        Metodo para mostrar los clientes en la tabla de clientes
+        :return:
+        """
         try:
             if var.ui.cbHistorico.isChecked():
                 consulta = 'select id_cliente, categoria, nombre, direccion, telefono, email, fecha_baja from cliente WHERE fecha_baja is not null'
@@ -79,6 +101,11 @@ class conexion:
 
     @staticmethod
     def onecli(id):
+        """
+        Recupera los detalles de un cliente según el código proporcionado
+        :param id: id del cliente
+        :return:
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -93,6 +120,11 @@ class conexion:
             print("Error fichero cliente", err)
 
     def bajaCliente(codigo):
+        """
+        Metodo para dar de baja a un cliente
+        :param codigo: id del cliente
+        :return:
+        """
         try:
             fecha = datetime.date.today()
             print(fecha)
@@ -113,6 +145,12 @@ class conexion:
             print("Error bajaCliente,", error)
 
     def modifCliente(modifCliente):
+        """
+        MEtodo para modificar el cliente
+        :param modifCliente: datos del cliente
+        :type modifCliente: list
+        :return:
+        """
         try:
             consulta = ('update cliente set nombre=:nombre, apellido=:apellido, direccion=:direccion, '
                         'fecha_nacimiento=:fecha_nacimiento, telefono=:telefono, '
@@ -137,6 +175,12 @@ class conexion:
             print(error, " en modifCliente")
 
     def crearProducto(newproducto):
+        """
+        Metodo para insertar un nuevo porducto
+        :param newproducto: datos del producto
+        :type newproducto:list
+        :return:
+        """
         try:
             print(newproducto)
             query = QtSql.QSqlQuery()
@@ -156,6 +200,10 @@ class conexion:
 
     @staticmethod
     def mostrarProducto():
+        """
+        Metodo para mostrar los datos del producto en la tabla producto
+        :return: NONE
+        """
         try:
             consulta = 'SELECT id_producto,nombre,precio,stock FROM producto '
             query = QtSql.QSqlQuery()
@@ -173,6 +221,11 @@ class conexion:
 
     @staticmethod
     def oneproducto(id):
+        """
+        Recupera los detalles de un producto según el código proporcionado
+        :param id: id del producto
+        :return:
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -187,6 +240,12 @@ class conexion:
             print("Error fichero cliente", err)
 
     def modficarProducto(modicarProducto):
+        """
+        Metodo para modificar el producto
+        :param modicarProducto: Datos del producto a modificar
+        :type modicarProducto: list
+        :return:
+        """
         try:
             consulta = ('update producto set nombre=:nombre, precio=:precio, stock=:stock '
                         'where id_producto=:id_producto')  # Removed the comma before 'where'
@@ -206,6 +265,11 @@ class conexion:
             print(error, " en modifCliente")
 
     def borrarProducto(idProducto):
+        """
+        Metodo para borrar un producto
+        :param idProducto: id del producto
+        :return:
+        """
         try:
             consulta = 'DELETE FROM producto WHERE id_producto = :id_producto'
             query = QtSql.QSqlQuery()
@@ -221,6 +285,10 @@ class conexion:
             print(error, " en borrarProducto")
 
     def cargarCliente(self=None):
+        """
+        metodo para cargar el id del cliente y su nombre en la combobox de ventas
+        :return:
+        """
         try:
             var.ui.cbCliente.clear()
             query = QtSql.QSqlQuery()
@@ -235,6 +303,10 @@ class conexion:
             print(f"Error loading clients: {error}")
 
     def cargarProducto(self=None):
+        """
+        metodo para cargar el id del producto y su nombre en la combobox de ventas
+        :return:
+        """
         try:
             var.ui.cbProducto.clear()
             query = QtSql.QSqlQuery()
@@ -249,6 +321,12 @@ class conexion:
             print(f"Error loading products: {error}")
 
     def altaFactura(registro):
+        """
+        metodo para dar de alta una factura de un cliente
+        :param registro: datos (id del cliente y fecha de alta de la facura)
+        :type registro: list
+        :return:
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare('INSERT INTO facturas (idCliente, fecha) VALUES (:idCliente, :fecha)')
@@ -264,6 +342,10 @@ class conexion:
 
     @staticmethod
     def cargarFactura():
+        """
+        metodo para cargar los datos de todas las facturas de los clientes
+        :return:
+        """
         try:
             registros = []
             query = QtSql.QSqlQuery()
@@ -278,6 +360,11 @@ class conexion:
 
     @staticmethod
     def oneFactura(id):
+        """
+        Recupera los detalles de una factura según el código proporcionado
+        :param id:  id del cliente
+        :return:
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -294,6 +381,12 @@ class conexion:
     #############################################Ventas######################################
 
     def altaVenta(registro):
+        """
+        metodo para agregar una linea de venta a una factura
+        :param registro: datos de la linea de venta
+        :type registro: list
+        :return:
+        """
         try:
             idProducto = registro[1]
             print(idProducto)
@@ -320,6 +413,11 @@ class conexion:
             print("Error al guardar factura:", error)
 
     def getPrecio(idProducto):
+        """
+        metodo para obtener el precio de un producto
+        :param idProducto: id del producto
+        :return:
+        """
         try:
             query = QtSql.QSqlQuery()
             query.prepare('SELECT precio FROM producto where id_producto = :id')
@@ -335,6 +433,11 @@ class conexion:
 
     @staticmethod
     def cargarVenta(dato):
+        """
+        metodo para cargar la venta en la tabla de lineas de venta
+        :param dato: id de le factura
+        :return:
+        """
         try:
             registros = []
             query = QtSql.QSqlQuery()
@@ -350,6 +453,11 @@ class conexion:
 
     @staticmethod
     def oneVenta(id):
+        """
+        Recupera los detalles de una linea de venta según el código proporcionado
+        :param id:
+        :return:
+        """
         try:
             registro = []
             query = QtSql.QSqlQuery()
@@ -366,7 +474,11 @@ class conexion:
             print("Error oneFactura", err)
 
     def borrarLinea(id):
-
+        """
+        Metodo para borrar la linea de venta
+        :param id: id de la linea de venta
+        :return:
+        """
         try:
             print(id)
             query = QtSql.QSqlQuery()
@@ -381,6 +493,12 @@ class conexion:
             print(error)
 
     def modifLinea(producto):
+        """
+        Metodo para modificar la linea de venta
+        :param producto: datos del producto
+        :type producto: list
+        :return:
+        """
         try:
             consulta = ('UPDATE venta '
                         'SET idProducto = :idProducto, cantidad = :cantidad '

@@ -6,8 +6,15 @@ import var
 
 
 class producto:
+    """
+    Clase que maneja las operaciones relacionadas con los productos de la aplicacion
+    """
     @staticmethod
     def limpiarProductos():
+        """
+        Limpiar los campos de entrada relacionados con los productos en la interfaz de usuario
+        :return:
+        """
         try:
             limpiar = [var.ui.leCodigoPrd,var.ui.leNombreProd,var.ui.sbStock]
             var.ui.lePrecio.setText("0.00")
@@ -20,6 +27,10 @@ class producto:
             print("Error al limpiar productos," ,error)
 
     def crearProducto(self):
+        """
+        Crea un producto con los datos proporcionados en los campos de entrada
+        :return:
+        """
         try:
             nombre_producto = var.ui.leNombreProd.text().strip()
             precio = var.ui.lePrecio.text().strip()
@@ -37,6 +48,12 @@ class producto:
             print("Error al crear productos,", error)
 
     def cargarTablaProductos(registros):
+        """
+        Carga los registros de productos en la tabla de productos de la interfaz de usuario
+        :param registros: Lista de registros
+        :type registros: list
+        :return: None
+        """
         try:
             print(registros)
             var.ui.tabProd.setRowCount(len(registros))
@@ -49,6 +66,10 @@ class producto:
             print("error en cargar tabla clientes:", error)
     @staticmethod
     def cargarProducto():
+        """
+        Carga los datos de un producto seleccionado en la tabla de productos a los campos de entrada correspondientes.
+        :return: None
+        """
         try:
             producto.limpiarProductos()
             selected_row = var.ui.tabProd.currentRow()
@@ -69,6 +90,10 @@ class producto:
         except Exception as error:
             print("Error cargar Clientes: ", error)
     def modifProducto(self):
+        """
+        Modifica los datos del producto seleccionado con los nuevos datos proporcionados.
+        :return: None
+        """
         try:
             producto = [
                 var.ui.leCodigoPrd,
@@ -84,6 +109,10 @@ class producto:
         except Exception as error:
             print(error," modif Producto")
     def eliminarProducto(self):
+        """
+        Elimina el producto seleccionado y actualiza la tabla de productos.
+        :return:  None
+        """
         try:
             idProducto = var.ui.leCodigoPrd.text().title()
             conexion.conexion.borrarProducto(idProducto)

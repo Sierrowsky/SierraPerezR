@@ -9,8 +9,14 @@ import var
 
 
 class ventas:
+    """
+    Clase que maneja las operaciones relacionadas con las ventas y facturas en la aplicación.
+    """
     @staticmethod
     def limpiarFacturas():
+        """
+        Limpia los campos de entrada relacionados con las facturas en la interfaz de usuario.
+        """
         try:
             venta = [var.ui.leFechaFactura, var.ui.leCodigoFactura]
             var.ui.cbCliente.setCurrentIndex(0)
@@ -21,6 +27,11 @@ class ventas:
             print(error)
 
     def cargarFecha(qDate):
+        """
+        Carga la fecha seleccionada en el calendario al campo de fecha de factura.
+        :param qDate: Fecha seleccionada.
+        :type qDate: QDate
+        """
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.leFechaFactura.setText(str(data))
@@ -29,6 +40,9 @@ class ventas:
             print(error + "cargar fecha clientes")
 
     def crearFactura(self):
+        """
+        Crea una nueva factura con los datos proporcionados en los campos de entrada.
+        """
         try:
             fecha_factura = var.ui.leFechaFactura.text().strip()
             cliente = var.ui.cbCliente.currentText().strip()
@@ -42,6 +56,11 @@ class ventas:
             print("error en crear factuyra ", error)
 
     def cargarTablaFacturas(registros):
+        """
+        Carga los registros de facturas en la tabla de facturas de la interfaz de usuario
+        :param registros: Lista de registros de facturas
+        :type registros: list
+        """
         try:
             print(registros)
             var.ui.tblFactura.setRowCount(len(registros))
@@ -55,6 +74,9 @@ class ventas:
 
     @staticmethod
     def cargarFactura():
+        """
+        Carga los datos de una factura seleccionada en la tabla de facturas a los campos de entrada correspondientes.
+        """
         try:
             ventas.limpiarFacturas()
             selected_row = var.ui.tblFactura.currentRow()
@@ -79,6 +101,9 @@ class ventas:
     #############################################################VENTAS#########################################
     @staticmethod
     def limpiarVentas():
+        """
+        Limpia los campos de entrada relacionados con las ventas en la interfaz de usuario.
+        """
         try:
             venta = [var.ui.leCodigoFactura2, var.ui.leCodigoVenta]
             var.ui.sbCantidad.setValue(0)
@@ -91,6 +116,9 @@ class ventas:
 
     @staticmethod
     def crearVenta():
+        """
+        Crea una nueva venta con los datos proporcionados en los campos de entrada.
+        """
         try:
             codFac = var.ui.leCodigoFactura2.text().strip()
             idProducto = var.ui.cbProducto.currentText().strip()
@@ -105,6 +133,12 @@ class ventas:
             print("error en crear factuyra ", error)
 
     def cargarTablaVentas(registros):
+        """
+        Carga los registros de ventas en la tabla de ventas de la interfaz de usuario.
+
+        :param registros: Lista de registros de ventas.
+        :type registros: list
+        """
         try:
             subtotal = 0.0
             var.ui.tblLineaFactura.setRowCount(len(registros))
@@ -132,6 +166,9 @@ class ventas:
 
     @  staticmethod
     def cargarVentas():
+        """
+        Carga los datos de una venta seleccionada en la tabla de ventas a los campos de entrada correspondientes.
+        """
         try:
             ventas.limpiarVentas()
             selected_row = var.ui.tblLineaFactura.currentRow()
@@ -152,6 +189,9 @@ class ventas:
         except Exception as error:
             print("Error cargar Clientes: ", error)
     def eliminarVenta(self):
+        """
+        Elimina la venta seleccionada y actualiza la tabla de ventas.
+        """
         try:
             conexion.conexion.borrarLinea(var.ui.leCodigoVenta.text().strip())
             conexion.conexion.cargarVenta(var.ui.leCodigoFactura2.text())
@@ -159,6 +199,11 @@ class ventas:
         except Exception as error:
             print("Error eliminar Venta: ", error)
     def modifVenta(self):
+        """
+        Modifica los datos de la venta seleccionada con los nuevos datos proporcionados.
+
+
+        """
         try:
             idVenta = var.ui.leCodigoVenta.text().strip()
             idProducto = var.ui.cbProducto.currentText().strip()

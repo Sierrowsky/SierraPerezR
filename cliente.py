@@ -9,6 +9,13 @@ import conexion
 
 class cliente:
     def cargarFecha(qDate):
+        """
+        Carga la fecha seleccionada en el widget de fecha.
+
+        :param qDate: Fecha seleccionada.
+        :type qDate: QDate
+        """
+
         try:
             data = ('{:02d}/{:02d}/{:4d}'.format(qDate.day(), qDate.month(), qDate.year()))
             var.ui.leFecha.setText(str(data))
@@ -17,6 +24,12 @@ class cliente:
             print(error + "cargar fecha clientes")
 
     def limpiar(self=None):
+        """
+        Limpia los widgets del panel de clientes.
+
+        Limpia los textos y checkboxes del panel de clientes.
+        """
+
         try:
             limpiar = [var.ui.leCodigo, var.ui.leApellidos, var.ui.leNombre, var.ui.leDireccion,
                        var.ui.leFecha, var.ui.leTelefono, var.ui.leEmail]
@@ -26,6 +39,11 @@ class cliente:
             print(error, "limpiar clientes")
 
     def altaCliente(self):
+        """
+        Da de alta a un cliente en la base de datos.
+
+        Obtiene los datos del cliente desde los widgets, los valida y los guarda en la base de datos.
+        """
         try:
             if var.ui.rbtEmpresario.isChecked():
                 nombre = var.ui.leNombre.text().strip()
@@ -83,6 +101,12 @@ class cliente:
             print(error, " alta cliente")
 
     def cargarTablaClientes(registros):
+        """
+        Carga los registros en la tabla de Clientes.
+
+        :param registros: Lista de registros de Clientes.
+        :type registros: list
+        """
         try:
             print(registros)
             var.ui.tabCli.setRowCount(len(registros))
@@ -96,6 +120,11 @@ class cliente:
 
     @staticmethod
     def cargarClientes():
+        """
+        Carga un conductor seleccionado en el panel de Clientes.
+
+        Obtiene los datos del Clientes seleccionado en la tabla y los carga en los widgets del panel.
+        """
         try:
             cliente.limpiar()
             selected_row = var.ui.tabCli.currentRow()
@@ -120,6 +149,11 @@ class cliente:
             print("Error cargar Clientes: ", error)
 
     def bajaCliente(self):
+        """
+        Da de baja a un cliente de la base de datos.
+
+        Obtiene la fecha seleccionada en el widget, el ID del cliente y realiza la eliminación en la base de datos.
+        """
         try:
             codigo = var.ui.leCodigo.text()
             if conexion.conexion.clienteEstaDadoDeBaja(codigo):
@@ -131,6 +165,11 @@ class cliente:
         except Exception as error:
             print("Error en baja cliente cliente ",error)
     def modifCliente(self):
+        """
+        Modifica los datos de un cliente en la base de datos.
+
+        Obtiene los datos del panel, los valida y los guarda en la base de datos.
+        """
         try:
             cliente = [
                 var.ui.leCodigo,

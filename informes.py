@@ -7,19 +7,19 @@ from reportlab.pdfgen import canvas
 import var
 import conexion
 
-"""
-if rbtEmpresario.isChecked():
-    select ....
-elif rbtParticular.isChecked():
-    select....
-elif (rbtEmpresario.isChecked() && cbHistorico.isChecked() || rbtParticular.isChecked() && cbHistorico.isChecked())
-    select *    
-"""
+
 
 
 class informes:
+    """
+    Clase de creacion de informes
+    """
     @staticmethod
     def reportCLientes():
+        """
+        Creacion del pdf con la informacion del cliente
+        :return:
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -91,6 +91,11 @@ class informes:
             print("Error listado clientes: " , error)
 
     def topInforme(titulo):
+        """
+        Creacion de la parte superior del informe de clientes
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             ruta_logo = 'images/logo.png'
             logo = Image.open(ruta_logo)
@@ -117,6 +122,11 @@ class informes:
         except Exception as error:
             print('Error en cabecera informe:', error)
     def footInforme(titulo):
+        """
+        Creacion de la parte inferior del informe de clientes
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             var.report.line(50,50,570,50)
             fecha = datetime.today()
@@ -132,6 +142,11 @@ class informes:
 ###################################################Report Productos######################################################
 
     def topInformeProducto(titulo):
+        """
+        Creacion de la parte superior del informe de productos
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             ruta_logo = 'images/logo.png'
             logo = Image.open(ruta_logo)
@@ -158,6 +173,11 @@ class informes:
         except Exception as error:
             print('Error en cabecera informe:', error)
     def footInformeProducto(titulo):
+        """
+        Creacion de la parte inferior del informe de productos
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             var.report.line(50,50,570,50)
             fecha = datetime.today()
@@ -172,6 +192,10 @@ class informes:
 
     @staticmethod
     def reportProductos():
+        """
+        Creacion del pdf con la informacion de los productos
+        :return:
+        """
         try:
             fecha = datetime.today()
             fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
@@ -225,6 +249,10 @@ class informes:
 #############################################REPORT FACTURAS #####################################################
     @staticmethod
     def reportFacturas():
+        """
+        Creacion del pdf con la informacion de la factura del cliente
+        :return:
+        """
         try:
             if var.ui.leCodigoFactura2.text() is str(""):
                 print("Seleccione una factura")
@@ -298,8 +326,12 @@ class informes:
         except Exception as error:
             print("Error informesFacturas: ", error)
 
-    @staticmethod
     def topInformeFactura(titulo):
+        """
+        Creacion de la parte superior del informe de facturas
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             cliente = var.ui.cbCliente.currentText().strip()
             codCli = cliente.split(". ")[0]
@@ -335,8 +367,12 @@ class informes:
         except Exception as error:
             print('Error en cabecera informe Factura:', error)
 
-    @staticmethod
     def footInformeFactura(titulo):
+        """
+        Creacion de la parte inferior del informe de facturas
+        :param titulo: titulo del informe
+        :return:
+        """
         try:
             var.report.line(50, 100, 570, 100)
             var.report.setFont('Helvetica', size=11)

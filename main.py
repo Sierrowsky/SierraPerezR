@@ -39,7 +39,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModificarLinea.clicked.connect(ventas.ventas.modifVenta)
         var.ui.btnVerFactura.clicked.connect(informes.informes.reportFacturas)
         """    
-        Eventos Botones
+        Eventos ActionBar
         """
         var.ui.actionSalir.triggered.connect(eventos.Eventos.salir)
         var.ui.actionLimpiar_Panel.triggered.connect(cliente.cliente.limpiar)
@@ -53,10 +53,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.rbtEmpresario.toggled.connect(main.Main.toggleApellidos)
 
         """
-        Eventos tabla
+        Eventos Tabla
         """
         eventos.Eventos.resiceTabProd()
         eventos.Eventos.resiceTabCli()
+        eventos.Eventos.resicetabFactura()
         eventos.Eventos.resicetblLineaFactura()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
         var.ui.tabProd.clicked.connect(producto.producto.cargarProducto)
@@ -71,6 +72,11 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionListado_Productos.triggered.connect(informes.informes.reportProductos)
 
     def toggleApellidos(checked):
+        """
+        Habilita o deshabilita el campo de apellidos dependiendo del estado del radio button.
+
+        Args: checked (bool): El estado del radio button.
+        """
         # Deshabilita el campo de entrada de apellidos si el radio button está marcado
         var.ui.leApellidos.setEnabled(not checked)
         var.ui.leApellidos.setText(None)
