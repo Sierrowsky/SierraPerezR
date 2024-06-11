@@ -1,5 +1,5 @@
 from PyQt6.QtWidgets import QTableWidgetItem
-from PyQt6.uic.properties import QtWidgets, QtCore
+from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtCore import Qt
 import time
 
@@ -52,7 +52,11 @@ class cliente:
                 telefono = var.ui.leNombre.text().strip()
                 email = var.ui.leNombre.text().strip()
                 if not nombre or direccion or fecha or telefono or email:
-                    print("faltan datos")
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Faltan Datos a introducir")
+                    mbox.exec()
                 else:
                     cliente = [
                         var.ui.leNombre,
@@ -78,7 +82,11 @@ class cliente:
                 telefono = var.ui.leNombre.text().strip()
                 email = var.ui.leNombre.text().strip()
                 if not nombre or apellidos or direccion or fecha or telefono or email:
-                    print("faltan datos")
+                    mbox = QtWidgets.QMessageBox()
+                    mbox.setWindowTitle('Aviso')
+                    mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                    mbox.setText("Faltan Datos a introducir")
+                    mbox.exec()
                 else:
                     cliente = [
                         var.ui.leNombre,
@@ -121,9 +129,9 @@ class cliente:
     @staticmethod
     def cargarClientes():
         """
-        Carga un conductor seleccionado en el panel de Clientes.
+        Carga un cliente seleccionado en el panel de Clientes.
 
-        Obtiene los datos del Clientes seleccionado en la tabla y los carga en los widgets del panel.
+        Obtiene los datos del clientes seleccionado en la tabla y los carga en los widgets del panel.
         """
         try:
             cliente.limpiar()

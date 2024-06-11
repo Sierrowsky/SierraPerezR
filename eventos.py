@@ -63,3 +63,12 @@ class Eventos():
 
         except Exception as error:
             print("error con tabProd",error)
+    @staticmethod
+    def resicetblEmpleado():
+        try:
+            header= var.ui.tblEmpleado.horizontalHeader()
+            for i in range(var.ui.tblEmpleado.columnCount()):
+                if i == 1 or i ==2:
+                    header.setSectionResizeMode(i,QtWidgets.QHeaderView.ResizeMode.Stretch)
+        except Exception as error:
+            print("error con tblEmpleado", error)

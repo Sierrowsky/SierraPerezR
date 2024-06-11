@@ -1,5 +1,6 @@
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QTableWidgetItem, QSpinBox,QLineEdit
+from PyQt6 import QtWidgets
 
 import conexion
 import var
@@ -39,7 +40,11 @@ class producto:
             print(nombre_producto, precio, stock)
 
             if not nombre_producto or not precio or not stock:
-                print("Faltan Datos")
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("Faltan Datos a introducir")
+                mbox.exec()
             else:
                 newproducto = [nombre_producto.title(), precio,int(stock)]
                 conexion.conexion.crearProducto(newproducto)

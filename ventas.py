@@ -2,7 +2,7 @@ from PyQt6.QtCore import Qt
 from PyQt6 import QtWidgets, QtGui
 from PyQt6.QtWidgets import QTableWidgetItem, QLineEdit, QSpinBox, QComboBox, QPushButton, QHeaderView
 
-from PyQt6.uic.properties import QtWidgets, QtCore, QtGui
+from PyQt6 import QtWidgets, QtCore, QtGui
 
 import conexion
 import var
@@ -47,9 +47,13 @@ class ventas:
             fecha_factura = var.ui.leFechaFactura.text().strip()
             cliente = var.ui.cbCliente.currentText().strip()
             if not fecha_factura or not cliente:
-                print("Faltan Datos")
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("Faltan Datos a introducir")
+                mbox.exec()
             else:
-                codCli = cliente.split(" ")[0]
+                codCli = cliente.split(". ")[0]
                 registro = [codCli, fecha_factura]
                 conexion.conexion.altaFactura(registro)
         except Exception as error:
@@ -83,6 +87,7 @@ class ventas:
             if selected_row != -1:
                 idVenta = var.ui.tblFactura.item(selected_row, 0).text()
                 registro = conexion.conexion.oneFactura(idVenta)
+                print(registro)
                 if registro:
                     datos = [var.ui.leCodigoFactura, var.ui.cbCliente, var.ui.leFechaFactura]
                     for dato, value in zip(datos, registro):
@@ -125,7 +130,11 @@ class ventas:
             idProdu = idProducto.split(". ")[0]
             sbStock = var.ui.sbCantidad.value()
             if not codFac or not idProducto or sbStock <= 0:
-                print("Faltan Datos")
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("Faltan Datos a introducir")
+                mbox.exec()
             else:
                 registro = [codFac, idProdu, sbStock]
                 conexion.conexion.altaVenta(registro)

@@ -32,7 +32,7 @@ class informes:
             var.report.setFont('Helvetica-Bold', size=10)
             var.report.drawString(50, 675, str(items[0]))
             var.report.drawString(100, 675, str(items[1]))
-            var.report.drawString(205, 675, str(items[2]))
+            var.report.drawString(165, 675, str(items[2]))
             var.report.drawString(300, 675, str(items[3]))
             var.report.drawString(370, 675, str(items[4]))
             var.report.drawString(470, 675, str(items[5]))
@@ -207,7 +207,7 @@ class informes:
             items = ['idProducto', 'Nombre', 'Precio', 'Stock']
             var.report.setFont('Helvetica-Bold', size=10)
             var.report.drawString(50, 675, str(items[0]))
-            var.report.drawString(250, 675, str(items[1]))
+            var.report.drawString(150, 675, str(items[1]))
             var.report.drawString(400, 675, str(items[2]))
             var.report.drawString(500, 675, str(items[3]))
             var.report.line(50, 670, 570, 670)
@@ -224,7 +224,7 @@ class informes:
                         informes.topInformeProducto(titulo)
                         informes.footInformeProducto(titulo)
                         var.report.drawString(50, 675, str(items[0]))
-                        var.report.drawString(250, 675, str(items[1]))
+                        var.report.drawString(150, 675, str(items[1]))
                         var.report.drawString(400, 675, str(items[2]))
                         var.report.drawString(500, 675, str(items[3]))
                         var.report.line(50, 625, 570, 670)
@@ -391,3 +391,63 @@ class informes:
             var.report.drawString(490, 40, f'Página {var.report.getPageNumber()}')
         except Exception as error:
             print('Error en pie informe Factura: ', error)
+#######################################################EMPLEADOS########################################################
+    @staticmethod
+    def reportEmpleados():
+        try:
+            fecha = datetime.today()
+            fecha = fecha.strftime('%Y_%m_%d_%H_%M_%S')
+            nombre = fecha + 'informesEmpleados.pdf'
+            var.report = canvas.Canvas('informesEmpleados/' + nombre)
+            titulo = 'Listado Empleados'
+            informes.topInforme(titulo)
+            informes.footInforme(titulo)
+            items = ['Codigo', 'Nombre', 'Departamento', 'Telefono', 'Turno', 'Fecha de baja']
+            var.report.setFont('Helvetica-Bold', size=10)
+            var.report.drawString(50, 675, str(items[0]))
+            var.report.drawString(100, 675, str(items[1]))
+            var.report.drawString(165, 675, str(items[2]))
+            var.report.drawString(300, 675, str(items[3]))
+            var.report.drawString(380, 675, str(items[4]))
+            var.report.drawString(470, 675, str(items[5]))
+            var.report.line(50, 670, 570, 670)
+            # query
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                        'SELECT * from empleado order by id_empleado')
+
+            if query.exec():
+                i = 55
+                j = 655
+                while query.next():
+                    if j <= 80:
+                        var.report.drawString(450, 70, 'Pagina Siguiente')
+                        var.report.showPage()  # Crear una pagina nueva
+                        informes.topInforme(titulo)
+                        informes.footInforme(titulo)
+                        var.report.drawString(50, 675, str(items[0]))
+                        var.report.drawString(100, 675, str(items[1]))
+                        var.report.drawString(165, 675, str(items[2]))
+                        var.report.drawString(280, 675, str(items[3]))
+                        var.report.drawString(380, 675, str(items[4]))
+                        var.report.drawString(460, 675, str(items[5]))
+                        var.report.line(50, 625, 570, 670)
+                        i = 55
+                        j = 655
+                    var.report.setFont('Helvetica', size=9)
+                    var.report.drawString(i + 15, j, str(query.value(0)))
+                    var.report.drawString(i + 50, j, str(query.value(1)))
+                    var.report.drawString(i + 115, j, str(query.value(2)))
+                    var.report.drawString(i + 245, j, str(query.value(3)))
+                    var.report.drawString(i + 330, j, str(query.value(4)))
+                    var.report.drawString(i + 420, j, str(query.value(5)))
+                    j=j-25
+            else:
+                print(query.lastError())
+            var.report.save()
+            rootPath='.\\informesEmpleados'
+            for file in os.listdir(rootPath):
+                if file.endswith(nombre):
+                    os.startfile('%s\\%s' % (rootPath,file))
+        except Exception as error:
+            print("Error listado empleados: " , error)

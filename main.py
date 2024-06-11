@@ -1,5 +1,6 @@
 import cliente
 import conexion
+import empleados
 import eventos
 import informes
 import main
@@ -22,6 +23,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.conexion.cargarCliente()
         conexion.conexion.cargarProducto()
         conexion.conexion.cargarFactura()
+        conexion.conexion.cargarEmpleado()
         """
         Eventos Botones
         """
@@ -38,6 +40,9 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnEliminarLinea.clicked.connect(ventas.ventas.eliminarVenta)
         var.ui.btnModificarLinea.clicked.connect(ventas.ventas.modifVenta)
         var.ui.btnVerFactura.clicked.connect(informes.informes.reportFacturas)
+        var.ui.btnAltaEmp.clicked.connect(empleados.Empleado.altaempleado)
+        var.ui.btnBajaEmp.clicked.connect(empleados.Empleado.bajaEmpleado)
+        var.ui.btnModificarEmp.clicked.connect(empleados.Empleado.modifEmpleado)
         """    
         Eventos ActionBar
         """
@@ -46,6 +51,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionLimpiar_Panel.triggered.connect(producto.producto.limpiarProductos)
         var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarFacturas)
         var.ui.actionLimpiar_Panel.triggered.connect(ventas.ventas.limpiarVentas)
+        var.ui.actionLimpiar_Panel.triggered.connect(empleados.Empleado.limpiarEmpleado)
 
         """
         Eventos Radio Button
@@ -59,17 +65,20 @@ class Main(QtWidgets.QMainWindow):
         eventos.Eventos.resiceTabCli()
         eventos.Eventos.resicetabFactura()
         eventos.Eventos.resicetblLineaFactura()
+        eventos.Eventos.resicetblEmpleado()
         var.ui.tabCli.clicked.connect(cliente.cliente.cargarClientes)
         var.ui.tabProd.clicked.connect(producto.producto.cargarProducto)
         var.ui.cbHistorico.toggled.connect(conexion.conexion.mostrarCliente)
         var.ui.tblFactura.clicked.connect(ventas.ventas.cargarFactura)
         var.ui.tblLineaFactura.clicked.connect(ventas.ventas.cargarVentas)
+        var.ui.tblEmpleado.clicked.connect(empleados.Empleado.cargarEmpleado)
 
         """
         Eventos Tool Bar
         """
         var.ui.actionListado_Clientes.triggered.connect(informes.informes.reportCLientes)
         var.ui.actionListado_Productos.triggered.connect(informes.informes.reportProductos)
+        var.ui.actionListado_Empleados.triggered.connect(informes.informes.reportEmpleados)
 
     def toggleApellidos(checked):
         """

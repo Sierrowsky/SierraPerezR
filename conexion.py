@@ -3,6 +3,7 @@ import datetime
 from PyQt6 import QtWidgets, QtSql
 
 import cliente
+import empleados
 import producto
 import var
 import ventas
@@ -519,3 +520,100 @@ class conexion:
                 return False
         except Exception as error:
             print(error, " en modifLinea")
+##############################################################Empleado##################################################
+    def altaEmpleado(empleado):
+        print(empleado)
+        query = QtSql.QSqlQuery()
+        query.prepare(
+                'INSERT INTO empleado (nombre, departamento,telefono,turno) VALUES (:nombre, :departamento,:telefono,:turno)')
+        query.bindValue(":nombre", str(empleado[0]))
+        query.bindValue(":departamento", str(empleado[1]))
+        query.bindValue(":telefono", int(empleado[2]))
+        query.bindValue(":turno", str(empleado[3]))
+        if query.exec():
+            print("Empleado guardado")
+            conexion.cargarEmpleado()
+        else:
+            raise Exception(query.lastError().text())
+
+    @staticmethod
+    def cargarEmpleado():
+        try:
+            registros = []
+            query = QtSql.QSqlQuery()
+            query.prepare(
+                "SELECT * FROM empleado")
+            if query.exec():
+                while query.next():
+                    row = [query.value(i) for i in range(query.record().count())]
+                    registros.append(row)
+            empleados.Empleado.cargarTablaEmpleados(registros)
+        except Exception as error:
+            print("Error cargando tabla facturas:", error)
+    @staticmethod
+    def oneEmpleado(id):
+        try:
+            registro = []
+            query = QtSql.QSqlQuery()
+            query.prepare('''
+                        SELECT id_empleado, nombre, departamento, telefono,turno FROM empleado WHERE id_empleado = :id
+                    ''')
+            query.bindValue(':id', int(id))
+            if query.exec():
+                if query.next():
+                    for i in range(5):
+                        registro.append(str(query.value(i)))
+            return registro
+        except Exception as err:
+            print("Error oneFactura", err)
+
+    @staticmethod
+    def empleadoEstaDadoDeBaja(codigo):
+
+        try:
+            consulta = "SELECT COUNT(*) FROM empleado WHERE id_empleado = ? AND fecha_baja IS NOT NULL"
+            query = QtSql.QSqlQuery()
+            query.prepare(consulta)
+            query.addBindValue(codigo)
+            if query.exec() and query.next():
+                return query.value(0) > 0
+            else:
+                return False
+        except Exception as error:
+            print("Error en clienteEstaDadoDeBaja:", error)
+            return False
+    @staticmethod
+    def bajaEmpleado(codigo):
+        try:
+            fecha = datetime.date.today()
+            print(fecha)
+            fecha = fecha.strftime('%d/%m/%Y')
+            query = QtSql.QSqlQuery()
+            query.prepare("UPDATE empleado set fecha_baja = :fechabaja where id_empleado = :codigo")
+            query.bindValue(':fechabaja', str(fecha))
+            query.bindValue(':codigo', str(codigo))
+            if query.exec():
+                mbox = QtWidgets.QMessageBox()
+                mbox.setWindowTitle('Aviso')
+                mbox.setIcon(QtWidgets.QMessageBox.Icon.Information)
+                mbox.setText("empleado dado de baja")
+                mbox.exec()
+            else:
+                print(query.lastError().text())
+        except Exception as error:
+            print("Error bajaCliente,", error)
+    def modifEmpleado(empleado):
+        print(empleado)
+        query = QtSql.QSqlQuery()
+        query.prepare(
+                'UPDATE empleado set nombre = :nombre,departamento = :departamento,telefono = :telefono,turno=:turno WHERE id_empleado = :id_empleado')
+        query.bindValue(":id_empleado",str(empleado[0]))
+        query.bindValue(":nombre", str(empleado[1]))
+        query.bindValue(":departamento", str(empleado[2]))
+        query.bindValue(":telefono", int(empleado[3]))
+        query.bindValue(":turno", str(empleado[4]))
+        if query.exec():
+            print("Empleado modificado")
+            conexion.cargarEmpleado()
+        else:
+            raise Exception(query.lastError().text())
